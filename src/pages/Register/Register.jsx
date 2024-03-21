@@ -1,6 +1,6 @@
 import './Register.css'
 export const Register = () => {
     return (
-        <>soy register</>
+        <div className='registerDesign'>soy register</div>
     )
 }

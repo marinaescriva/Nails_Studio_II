@@ -1,0 +1,13 @@
+.custominputDesign {
+
+    height: 16vh;
+    width: 100vw;
+
+    background-color: lightpink;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+}
+
