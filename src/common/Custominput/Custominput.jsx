@@ -1,6 +1,7 @@
 
-import './CustomImput.css';
-export const CustomImput = ({design, type, name, value, placeholder,functionChange, onBlur}) => {
+import './Custominput.css';
+
+export const CustomInput = ({design, type, name, value, placeholder,functionChange}) => {
     return(
         <input
             className={design}
@@ -9,8 +10,7 @@ export const CustomImput = ({design, type, name, value, placeholder,functionChan
             value={value}
             placeholder={placeholder}
             onChange={functionChange}
-            onBlur={onBlur}
-        
+           
         />
     )
 }
