@@ -11,4 +11,7 @@
     align-items: flex-end;
 
 }
-
+.menu {
+    display: flex;
+    flex-direction: row;
+}

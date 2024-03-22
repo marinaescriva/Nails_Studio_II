@@ -4,7 +4,7 @@ import "./Header.css";
 
 export const Header = () => {
 
-    const token = true;
+    const token = false;
     return (
         <div className='headerDesign'>
             <CustomLink
@@ -13,7 +13,7 @@ export const Header = () => {
             />
             {
                 token
-                    ? (<div>
+                    ? (<div className="menu">
                         <CustomLink
                             title="name"
                             destination="/profile"
@@ -25,7 +25,7 @@ export const Header = () => {
 
                     </div>)
 
-                    : (<div>
+                    : (<div className="menu">
                         <CustomLink
                             title="Login"
                             destination="/login"
