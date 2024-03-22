@@ -3,7 +3,8 @@
     height: 84vh;
     width: 100vw;
 
-    background-color: rgb(255, 122, 200);
+    color: white;
+    background-color:   rgb(215, 182, 165);;
 
     display: flex;
     justify-content: center;

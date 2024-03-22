@@ -12,4 +12,4 @@ export const Body = () => {
             <Route path='/register' element = {<Register />} />
         </Routes>
     )
-}
+} 

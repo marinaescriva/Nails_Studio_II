@@ -1,0 +1,16 @@
+.navigateDesign {
+
+    font-weight: bold;
+    color:chartreuse;
+
+    transition: 0.4;
+    background-color: brown;
+    margin: 1em;
+}
+
+.navigateDesign:hover{
+    transition: 0.4s;
+    color:black;
+    cursor: pointer;
+
+}
