@@ -4,7 +4,7 @@
     width: 100vw;
     
 
-    background-color: rgb(255, 122, 200);
+    background-color: rgb(250, 181, 153);
 
     display: flex;
     flex-direction: column;
@@ -15,18 +15,60 @@
 
 .inputDesign{
 
-    background-color: rgb(255, 255, 255);
+ 
     border-radius: 0.9em;
-    border-color: rgb(238, 196, 152);
+    border: 0.2em solid rgb(180, 105, 58);
+    border-style:hidden;
+
+    text-align: center;
+
     margin: 1em;
     height: 5vh;
-    width: 15vw;
+    width:fit-content;
 
 }
+.inputDesign:focus {
+
+    outline-style:groove;
+    outline-color: brown;
+     
+    }
+    
 .inputError{
     background-color: rgb(93, 21, 169); 
     color:darkred;
     /* no funciona esto hasta q no exista la validacion  */
     
+}
+.loginButton{
+
+    border-radius: 0.9em;
+    border: 0.2em solid rgb(180, 105, 58);
+    border-style:hidden;
+
+    text-align: center;
+
+    margin: 1em;
+    height: 5vh;
+    width:fit-content;
+
+    transition: 0.4;
+
+}
+
+.loginButton:hover{
+
+    border-radius: 0.9em;
+    border: 0.2em solid rgb(180, 105, 58);
+    border-style:hidden;
+
+    text-align: center;
+
+    margin: 1em;
+    height: 5vh;
+    width:fit-content;
+
+    transition: 0.4;
+
 }
 
