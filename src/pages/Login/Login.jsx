@@ -25,10 +25,10 @@ export const Login = () => {
     
     return (
         <div className='loginDesign'>
-            <pre>{JSON.stringify(credenciales, null, 2)}</pre>
+            {/* <pre>{JSON.stringify(credenciales, null, 2)}</pre> */}
             <CustomInput
-                design="inputDesign"
-                type="text"
+                design={credenciales.errors ? "inputDesign inputError" : "inputDesign"} 
+                type="email"
                 name="email" // e.target.name ref to field name and access to "email", this means in credenciales object has email: password:.
                 // the property in credenciales should be "email" or "password" as the content in the CustomInput name="email" and name="password"
                 value={credenciales.email || "" }
