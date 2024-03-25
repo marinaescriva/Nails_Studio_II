@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { CustomInput } from '../../common/Custominput/Custominput';
 import { loginMe } from '../../services/apiCalls';
 import { decodeToken } from "react-jwt"
+import { CButton } from '../../common/CButton/CButton';
 
 import './Login.css';
 
@@ -43,6 +44,7 @@ export const Login = () => {
 
         sessionStorage.setItem("user", JSON.stringify (decodificated)),
         sessionStorage.setItem("token", fetched)
+        console.log("user logged")
     }
 
     return (
@@ -65,7 +67,12 @@ export const Login = () => {
                 placeholder="your password"
                 functionChange={inputHandler}
             />
-            <div className='loginButton' onClick={logMe}>Log in</div>
+            {/* <div className='loginButton' onClick={logMe}>Log in</div> */}
+            <CButton
+            className={"CButtonDesign"}
+            title={"Login Me"}
+            functionEmit={logMe}
+            />
             <div>{msgError}</div>
         </div>
     )

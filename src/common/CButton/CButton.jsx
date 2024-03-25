@@ -1,10 +1,9 @@
 import "./CButton.css"
 
-export const CButton = ({className, title}) => {
+export const CButton = ({className, title, functionEmit}) => {
     return(
-        <div className={className}>
+        <div className={className} onClick={functionEmit}>
         {title}
-       
 
         </div>
     )

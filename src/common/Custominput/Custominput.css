@@ -5,10 +5,15 @@
     margin: 1em;
 
     background-color: rgb(255, 255, 255);
+    border: 0.2 solid rgb(0, 0, 0);
 
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
 
+}
+.custominputDesignError{
+
+    border: 0.2 solid red;
 }
 
