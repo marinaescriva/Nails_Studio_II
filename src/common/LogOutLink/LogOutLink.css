@@ -1,1 +1,18 @@
 /* to do */
+
+.navigateDesign {
+
+    font-weight: bold;
+    color:rgb(0, 0, 0);
+
+    transition: 0.4;
+    background-color: rgb(255, 255, 255);
+    margin: 1em;
+}
+
+.navigateDesign:hover{
+    transition: 0.4s;
+    color:black;
+    cursor: pointer;
+
+}

@@ -1,6 +1,6 @@
 
 import { CustomLink } from "../CustomLink/CustomLink";
-import { LogOutLink} from "../LogOutLink/LogOutLink";
+import { LogOutLink } from "../LogOutLink/LogOutLink";
 import "./Header.css";
 
 export const Header = () => {
@@ -23,20 +23,10 @@ export const Header = () => {
                         title={sessionStorage.getItem("name")}
                         destination="/profile"
                     />
+                    <LogOutLink title="Log Out" onClick={() => logOut()} />
+                    
                 </>
                 ) : (
-                    token
-                        ? (<div className="menu">
-                            <CustomLink
-                                title="name"
-                                destination="/profile"
-                            />
-                            <CustomLink
-                                title="Log-out"
-                                onClick={() => logOut()}
-                            />
-                        </div>
-                        ) : (
                             <div className="menu">
                                 <CustomLink
                                     title="Register"
@@ -48,7 +38,7 @@ export const Header = () => {
                                 />
                             </div>
                         )
-                )}
+                }
         </div>
     )
 }
