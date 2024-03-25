@@ -1,15 +1,14 @@
 .custominputDesign {
 
-    height: 4em;
-    width: 7em;
+    border-radius: 0.9em;
+    border: 0.2em solid rgb(180, 105, 58);
+    border-style:hidden;
+
+    text-align: center;
+
     margin: 1em;
-
-    background-color: rgb(255, 255, 255);
-    border: 0.2 solid rgb(0, 0, 0);
-
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    height: 5vh;
+    width:fit-content;
 
 }
 .custominputDesignError{

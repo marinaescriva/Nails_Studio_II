@@ -12,9 +12,12 @@
 
 }
 
-.inputDesign{
+.error {
+    color:rgb(184, 22, 22);
+}
 
- 
+/* .inputDesign{
+
     border-radius: 0.9em;
     border: 0.2em solid rgb(180, 105, 58);
     border-style:hidden;
@@ -38,4 +41,4 @@
     color:darkred;
     /* no funciona esto hasta q no exista la validacion  */
     
-}
+

@@ -3,14 +3,26 @@ import { CustomInput } from '../../common/Custominput/Custominput';
 import { loginMe } from '../../services/apiCalls';
 import { decodeToken } from "react-jwt"
 import { CButton } from '../../common/CButton/CButton';
+import { useNavigate } from "react-router-dom";
 
 import './Login.css';
+import { validation } from '../../utils/functions';
+
+const dataUser = JSON.parse(localStorage.getItem("passport"));
 
 export const Login = () => {
 
-    const [credenciales, setCredenciales] = useState({ //el array con las credenciales actuales del usuario // la funcion que actualiza ese estado
+    const navigate = useNavigate();
+    const [tokenStorage, setTokenStorage] = useState(dataUser?.token)
+
+    const [credentials, setCredentials] = useState({ //el array con las credenciales actuales del usuario // la funcion que actualiza ese estado
         email: "",
         password: ""
+    })
+
+    const [credentialsError, setCredentialsError] = useState({ //el array con las credenciales actuales del usuario // la funcion que actualiza ese estado
+        emailError: "",
+        passwordError: ""
     })
 
     const [msgError, setMsgError] = useState("")
@@ -19,7 +31,7 @@ export const Login = () => {
         // In the CustomInput component, there is a function called functionChange with the inputHandler object. 
         // This function triggers an onChange event in the setCredenciales field.
 
-        setCredenciales((prevState) => ({
+        setCredentials((prevState) => ({
             ...prevState, // Shallow copy of the previous state to avoid direct modification. (prevState is a placeholder)
             // (...) creates a new instance.
             [e.target.name]: e.target.value // e.target accesses the name property of the object to be modified. [] because it access to the property refeared in e.target.name
@@ -29,9 +41,19 @@ export const Login = () => {
         }));
     };
 
+    const checkError = (e) => {
+        const error = validation(e.target.name, e.target.value);
+        
+        setCredentialsError((prevState) => ({
+            ...prevState,
+            [e.target.name + "Error"] : error,
+        }))
+    };
+
+
     const logMe = async () => {
 
-        const fetched = await loginMe(credenciales);
+        const fetched = await loginMe(credentials);
 
         if(!fetched.success){
             
@@ -44,30 +66,39 @@ export const Login = () => {
 
         sessionStorage.setItem("user", JSON.stringify (decodificated)),
         sessionStorage.setItem("token", fetched)
+
+        setMsgError(`Bienvenido ${decodificated.name}`)
         console.log("user logged")
+
+        setTimeout(() => { navigate("/") }, 800) //redirige al home
     }
 
     return (
         <div className='loginDesign'>
             {/* <pre>{JSON.stringify(credenciales, null, 2)}</pre> */}
             <CustomInput
-                design={credenciales.errors ? "inputDesign inputError" : "inputDesign"}
+                className={`custominputDesign ${credentialsError.emailError !== "" ? "custominputDesignError" : ""}`}
                 type="email"
                 name="email" // e.target.name ref to field name and access to "email", this means in credenciales object has email: password:.
                 // the property in credenciales should be "email" or "password" as the content in the CustomInput name="email" and name="password"
-                value={credenciales.email || ""}
+                value={credentials.email || ""}
                 placeholder="your email"
+                disabled={""}
                 functionChange={inputHandler}
+                functionBlur={(e) => checkError(e)}
             />
+            <div className="error">{credentialsError.emailError}</div>
             <CustomInput
-                design={credenciales.errors ? "inputDesign inputError" : "inputDesign"}
+                className={`custominputDesign ${credentialsError.passwordError !== "" ? "custominputDesignError" : ""}`}
                 type="password"
                 name="password"
-                value={credenciales.password || ""}
+                value={credentials.password || ""}
                 placeholder="your password"
+                disabled={""}
                 functionChange={inputHandler}
+                functionBlur={(e) => checkError(e)}
             />
-            {/* <div className='loginButton' onClick={logMe}>Log in</div> */}
+             <div className="error">{credentialsError.passwordError}</div>
             <CButton
             className={"CButtonDesign"}
             title={"Login Me"}

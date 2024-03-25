@@ -13,13 +13,13 @@ export const Register = () => {
 
     const navigate = useNavigate();
 
-    const [user, setUser] = useState({
+    const [credentials, setCredentials] = useState({
         name: "",
         surname: "",
         email: "",
         password: "",
     })
-    const [userError, setUserError] = useState({
+    const [credentialsError, setCredentialsError] = useState({
         nameError: "",
         surnameError: "",
         emailError: "",
@@ -32,7 +32,7 @@ export const Register = () => {
 
     const inputHandler = (e) => {
 
-        setUser(
+        setCredentials(
             (prevState) => ({
                 ...prevState,
                 [e.target.name]: e.target.value,
@@ -43,7 +43,7 @@ export const Register = () => {
 
         const error = validation(e.target.name, e.target.value);
 
-        setUserError((prevState) => ({
+        setCredentialsError((prevState) => ({
             ...prevState,
             [e.target.name + "Error"]: error,
         }))
@@ -54,12 +54,12 @@ export const Register = () => {
 
         try {
 
-            for (let element in user) {
-                if (user[element] === "") {
+            for (let element in credentials) {
+                if (credentials[element] === "") {
                     throw new Error("All fields should be completed")
                 }
             }
-            const fetched = await registerMe(user);
+            const fetched = await registerMe(credentials);
             setMsgError(fetched.message);
             setTimeout(() => { navigate("/login") }, 820) 
 
@@ -74,52 +74,52 @@ export const Register = () => {
     return (
         <>
             <div className='registerDesign'>
-                <pre>{JSON.stringify(user, null, 2)}</pre>
+                {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
                 <CustomInput
-                    className={`custominputDesign ${userError.nameError !== "" ? "custominputDesignError" : ""}`}
+                    className={`custominputDesign ${credentialsError.nameError !== "" ? "custominputDesignError" : ""}`}
                     type={"text"}
                     name={"name"}
-                    value={user.name || ""}
+                    value={credentials.name || ""}
                     placeholder={"name"}
                     disabled={""}
                     functionChange={(e) => inputHandler(e)}
                     functionBlur={(e) => checkError(e)}
                 />
-                <div className='error'>{userError.nameError}</div>
+                <div className='error'>{credentialsError.nameError}</div>
                 <CustomInput
-                    className={`custominputDesign ${userError.surnameError !== "" ? "custominputDesignError" : ""}`}
+                    className={`custominputDesign ${credentialsError.surnameError !== "" ? "custominputDesignError" : ""}`}
                     type={"text"}
                     name={"surname"}
-                    value={user.surname || ""}
+                    value={credentials.surname || ""}
                     placeholder={"surname"}
                     disabled={""}
                     functionChange={(e) => inputHandler(e)}
                     functionBlur={(e) => checkError(e)}
                 />
-                <div className='error'>{userError.surnameError}</div>
+                <div className='error'>{credentialsError.surnameError}</div>
                 <CustomInput
-                    className={`custominputDesign ${userError.emailError !== "" ? "custominputDesignError" : ""}`}
+                    className={`custominputDesign ${credentialsError.emailError !== "" ? "custominputDesignError" : ""}`}
                     type={"email"}
                     name={"email"}
-                    value={user.email || ""}
+                    value={credentials.email || ""}
                     placeholder={"email"}
                     disabled={""}
                     functionChange={(e) => inputHandler(e)}
                     functionBlur={(e) => checkError(e)}
                 />
-                <div className='error'>{userError.emailError}</div>
+                <div className='error'>{credentialsError.emailError}</div>
 
                 <CustomInput
-                    className={`custominputDesign ${userError.passwordError !== "" ? "custominputDesignError" : ""}`}
+                    className={`custominputDesign ${credentialsError.passwordError !== "" ? "custominputDesignError" : ""}`}
                     type={"password"}
                     name={"password"}
-                    value={user.password || ""}
+                    value={credentials.password || ""}
                     placeholder={"password"}
                     disabled={""}
                     functionChange={(e) => inputHandler(e)}
                     functionBlur={(e) => checkError(e)}
                 />
-                <div className='error'>{userError.passwordError}</div>
+                <div className='error'>{credentialsError.passwordError}</div>
 
                 <CButton
                     className={"CButtonDesign"}
