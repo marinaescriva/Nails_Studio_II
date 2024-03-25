@@ -1,6 +1,8 @@
-import './Register.css'
+
 import { useState, useEffect } from 'react';
 import { CustomInput } from '../../common/Custominput/Custominput';
+import './Register.css'
+import { CButton } from '../../common/CButton/CButton';
 
 export const Register = () => {
 
@@ -12,42 +14,51 @@ export const Register = () => {
     })
 
     const inputHandler = (e) => {
-        console.log(e.target.value)
+
+        setUser(
+            (prevState) => ({
+                ...prevState,
+                [e.target.name]: e.target.value,
+            })
+        )
     }
 
 
     return (
         <div className='registerDesign'>
+            <pre>{JSON.stringify(user, null, 2)}</pre>
             <CustomInput
-                className={"custominputDesign"}
+                className={"inputDesign"}
                 type={"text"}
                 name={"name"}
                 value={user.name || ""}
-                functionChange={(e) => inputHandler (e)}
+                functionChange={(e) => inputHandler(e)}
             />
             <CustomInput
-                className={"custominputDesign"}
+                className={"inputDesign"}
                 type={"text"}
                 name={"surname"}
                 value={user.surname || ""}
-                functionChange={(e) => inputHandler (e)}
+                functionChange={(e) => inputHandler(e)}
             />
             <CustomInput
-                className={"custominputDesign"}
+                className={"inputDesign"}
                 type={"text"}
                 name={"email"}
                 value={user.email || ""}
-                functionChange={(e) => inputHandler (e) }
+                functionChange={(e) => inputHandler(e)}
             />
             <CustomInput
-                className={"custominputDesign"}
+                className={"inputDesign"}
                 type={"text"}
                 name={"password"}
                 value={user.password || ""}
-                functionChange={(e) => inputHandler (e) }
+                functionChange={(e) => inputHandler(e)}
             />
-               {/* <div className='loginButton' onClick={logMe}>Log in</div>
-            <div>{msgError}</div> */}
+            <CButton
+            className={"CButtonDesign"}
+            title={"Log Me"}
+            />
         </div>
     )
 }
