@@ -57,27 +57,33 @@ export const Login = () => {
 
     const logMe = async () => {
 
-        const fetched = await loginMe(credentials);
-
-        if (!fetched.success) {
-
-            setMsgError(fetched.message)
-            return;
+        for (let credential in credentials){
+            if(credentials[credential]===""){
+            throw new Error ("email and password are required")
+            }
         }
+
+        const fetched = await loginMe(credentials)
+
+        // const fetched = await loginMe(credentials);
+
+        // if (!fetched.success) {
+
+        //     setMsgError(fetched.message)
+        //     return;
+        // }
 
         const decodificated = decodeToken(fetched.token)
 
+        const passport = {
+            token: fetched.token,
+            decodificated: decodificated
+        }
 
-        sessionStorage.setItem("user", JSON.stringify(decodificated)),
-            sessionStorage.setItem("token", fetched),
-            sessionStorage.setItem("name", decodificated.name),
-            sessionStorage.setItem("role", decodificated.role),
-            navigate("/")
-        // que dirija a servicios luego o aqui a home 
-
+        localStorage.setItem("passport", JSON.stringify(passport))
+        console.log(passport)
 
         setMsgError(`Bienvenido ${decodificated.name}`)
-        console.log("user logged")
 
         setTimeout(() => { navigate("/") }, 800) //redirige al home
     }

@@ -10,10 +10,10 @@ import './Profile.css';
 import { loginMe } from '../../services/apiCalls';
 import { validation } from '../../utils/functions';
 
-
+/* dataUser */
 
 export const Profile = () => {
-    
+
     const dataUser = JSON.parse(localStorage.getItem("passport"));
 
     const navigate = useNavigate();
@@ -68,14 +68,7 @@ export const Profile = () => {
         const decodificated = decodeToken(fetched.token)
 
 
-        sessionStorage.setItem("user", JSON.stringify(decodificated)),
-            sessionStorage.setItem("token", fetched),
-            sessionStorage.setItem("name", decodificated.name),
-            sessionStorage.setItem("role", decodificated.role),
-            navigate("/")
-        // que dirija a servicios luego o aqui a home 
-
-
+        localStorage.setItem("passport", JSON.stringify(passport))
         setMsgError(`Bienvenido ${decodificated.name}`)
         console.log("user logged")
 
