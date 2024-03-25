@@ -34,36 +34,29 @@ export const loginMe = async (credenciales) => {
 
 }
 
-export const registerMe = async () => {
 
+export const registerMe = async (user) => {
 
     const options = {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(),
-        
+        body: JSON.stringify(user),
     };
 
-    
-
     try {
-     
-        // auth/login
-        const response = await fetch(`${root}auth/register`, options)
-        const data = await response.json()
-      
-
-        if(!data.success){
-            throw new Error(data.message)
-        }
-
-        return data;
-
-    } catch (error) {
+    // auth/register
+    const response = await fetch(`${root}auth/register`, options)
+    const data = await response.json()
         
-        return error;
+    if (!data.success) {
+        throw new Error (data.message)
+    }
+
+    return data;
+    } catch (error) {
+        return error
     }
 
 }

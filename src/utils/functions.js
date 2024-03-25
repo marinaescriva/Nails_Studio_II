@@ -22,18 +22,20 @@ export const validation = (type, value) => {
             const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
             if (!emailRegex.test(value)) {
-                return "add a correct email"
+                return "add a correct email";
             }
             return "";
 
-        case "password":
-            if (value.leght < 6) {
-                return "password should be longer"
+            case "password":
+
+            if (value.length < 6) {
+            return "password should be longer"
             }
             return "";
 
         default:
-            console.log("validation function has an error ")
+            console.log("validation function");
+       
     }
 
 }
