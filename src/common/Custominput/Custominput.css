@@ -1,9 +1,10 @@
 .custominputDesign {
 
-    height: 16vh;
-    width: 100vw;
+    height: 4em;
+    width: 7em;
+    margin: 1em;
 
-    background-color: rgb(26, 0, 170);
+    background-color: rgb(255, 255, 255);
 
     display: flex;
     justify-content: flex-end;

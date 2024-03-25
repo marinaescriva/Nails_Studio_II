@@ -33,11 +33,13 @@ export const Login = () => {
         const fetched = await loginMe(credenciales);
 
         if(!fetched.success){
+            
             setMsgError(fetched.message)
             return;
         }
         // console.log(fetched.token)
         const decodificated = decodeToken(fetched.token)
+     
 
         sessionStorage.setItem("user", JSON.stringify (decodificated)),
         sessionStorage.setItem("token", fetched)
