@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { CustomInput } from '../../common/Custominput/Custominput';
-import { loginMe } from '../../services/apiCalls';
+
 import { decodeToken } from "react-jwt"
 import { CButton } from '../../common/CButton/CButton';
 import { useNavigate } from "react-router-dom";
 
 import './Login.css';
+
+import { loginMe } from '../../services/apiCalls';
 import { validation } from '../../utils/functions';
 
 const dataUser = JSON.parse(localStorage.getItem("passport"));
@@ -43,10 +45,10 @@ export const Login = () => {
 
     const checkError = (e) => {
         const error = validation(e.target.name, e.target.value);
-        
+
         setCredentialsError((prevState) => ({
             ...prevState,
-            [e.target.name + "Error"] : error,
+            [e.target.name + "Error"]: error,
         }))
     };
 
@@ -55,17 +57,22 @@ export const Login = () => {
 
         const fetched = await loginMe(credentials);
 
-        if(!fetched.success){
-            
+        if (!fetched.success) {
+
             setMsgError(fetched.message)
             return;
         }
-        // console.log(fetched.token)
-        const decodificated = decodeToken(fetched.token)
-     
 
-        sessionStorage.setItem("user", JSON.stringify (decodificated)),
-        sessionStorage.setItem("token", fetched)
+        const decodificated = decodeToken(fetched.token)
+
+
+        sessionStorage.setItem("user", JSON.stringify(decodificated)),
+            sessionStorage.setItem("token", fetched),
+            sessionStorage.setItem("name", decodificated.name),
+            sessionStorage.setItem("role", decodificated.role),
+            navigate("/")
+        // que dirija a servicios luego o aqui a home 
+
 
         setMsgError(`Bienvenido ${decodificated.name}`)
         console.log("user logged")
@@ -74,37 +81,39 @@ export const Login = () => {
     }
 
     return (
-        <div className='loginDesign'>
-            {/* <pre>{JSON.stringify(credenciales, null, 2)}</pre> */}
-            <CustomInput
-                className={`custominputDesign ${credentialsError.emailError !== "" ? "custominputDesignError" : ""}`}
-                type="email"
-                name="email" // e.target.name ref to field name and access to "email", this means in credenciales object has email: password:.
-                // the property in credenciales should be "email" or "password" as the content in the CustomInput name="email" and name="password"
-                value={credentials.email || ""}
-                placeholder="your email"
-                disabled={""}
-                functionChange={inputHandler}
-                functionBlur={(e) => checkError(e)}
-            />
-            <div className="error">{credentialsError.emailError}</div>
-            <CustomInput
-                className={`custominputDesign ${credentialsError.passwordError !== "" ? "custominputDesignError" : ""}`}
-                type="password"
-                name="password"
-                value={credentials.password || ""}
-                placeholder="your password"
-                disabled={""}
-                functionChange={inputHandler}
-                functionBlur={(e) => checkError(e)}
-            />
-             <div className="error">{credentialsError.passwordError}</div>
-            <CButton
-            className={"CButtonDesign"}
-            title={"Login Me"}
-            functionEmit={logMe}
-            />
-            <div>{msgError}</div>
-        </div>
+        <>
+            <div className='loginDesign'>
+                {/* <pre>{JSON.stringify(credenciales, null, 2)}</pre> */}
+                <CustomInput
+                    className={`custominputDesign ${credentialsError.emailError !== "" ? "custominputDesignError" : ""}`}
+                    type="email"
+                    name="email" // e.target.name ref to field name and access to "email", this means in credenciales object has email: password:.
+                    // the property in credenciales should be "email" or "password" as the content in the CustomInput name="email" and name="password"
+                    value={credentials.email || ""}
+                    placeholder="your email"
+                    disabled={""}
+                    functionChange={inputHandler}
+                    functionBlur={(e) => checkError(e)}
+                />
+                <div className='error'>{credentialsError.emailError}</div>
+                <CustomInput
+                    className={`custominputDesign ${credentialsError.passwordError !== "" ? "custominputDesignError" : ""}`}
+                    type="password"
+                    name="password"
+                    value={credentials.password || ""}
+                    placeholder="your password"
+                    disabled={""}
+                    functionChange={inputHandler}
+                    functionBlur={(e) => checkError(e)}
+                />
+                <div className='error'>{credentialsError.passwordError}</div>
+                <CButton
+                    className={"CButtonDesign"}
+                    title={"Login Me"}
+                    functionEmit={logMe}
+                />
+                <div>{msgError}</div>
+            </div>
+        </>
     )
 }

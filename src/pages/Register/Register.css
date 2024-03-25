@@ -3,7 +3,7 @@
     height: 84vh;
     width: 100vw;
 
-    background-color: rgb(255, 122, 200);
+    background-color: rgb(215, 133, 46);
 
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
 }
 
 .error {
-    color:rgb(184, 22, 22);
+    color: grey;
 }
 
 /* .inputDesign{

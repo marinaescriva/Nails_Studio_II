@@ -12,34 +12,6 @@
     align-items: center;
 
 }
-.loginButton{
-
-    border-radius: 0.9em;
-    border-style:hidden;
-    background-color: aqua;
-
-    text-align: center;
-
-    margin: 1em;
-    height: fit-content;
-    width: 10em;
-
-    transition: 0.4;
-
-}
-
-.loginButton:hover{
-
-    border-radius: 0.9em;
-    border-style:hidden;
-    background-color: rgb(212, 3, 198);
-
-    cursor: pointer;
-
-    transition: 0.4;
-
-}
-
 
 .inputDesign{
 
@@ -61,11 +33,5 @@
     outline-color: brown;
      
     }
-    
-.inputError{
-    background-color: rgb(93, 21, 169); 
-    color:darkred;
-    /* no funciona esto hasta q no exista la validacion  */
-    
-}
+
 

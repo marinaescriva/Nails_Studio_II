@@ -16,12 +16,11 @@ export const loginMe = async (credentials) => {
 
     try {
      
-        // auth/login
         const response = await fetch(`${root}auth/login`, options)
         const data = await response.json()
       
 
-        if(!data.success){
+        if(!data.success){ 
             throw new Error(data.message)
         }
 
