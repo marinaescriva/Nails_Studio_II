@@ -10,9 +10,11 @@ import './Login.css';
 import { loginMe } from '../../services/apiCalls';
 import { validation } from '../../utils/functions';
 
-const dataUser = JSON.parse(localStorage.getItem("passport"));
+
 
 export const Login = () => {
+    
+    const dataUser = JSON.parse(localStorage.getItem("passport"));
 
     const navigate = useNavigate();
     const [tokenStorage, setTokenStorage] = useState(dataUser?.token)

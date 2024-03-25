@@ -12,18 +12,19 @@ export const Header = () => {
 
     return (
         <div className='headerDesign'>
-            {sessionStorage.getItem("token") === "true"
-                ? (<>
-
-                    <CustomLink
+            <CustomLink
                         title="Home"
                         destination="/"
                     />
+            {sessionStorage.getItem("token") === "true"
+                ? (<>
+
+                    
                     <CustomLink
                         title={sessionStorage.getItem("name")}
                         destination="/profile"
                     />
-                    <LogOutLink title="Log Out" onClick={() => logOut()} />
+                    {/* <LogOutLink title="Log Out" onClick={() => logOut()} /> */}
                     
                 </>
                 ) : (
