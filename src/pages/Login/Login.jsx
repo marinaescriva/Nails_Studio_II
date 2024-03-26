@@ -13,11 +13,11 @@ import { validation } from '../../utils/functions';
 
 
 export const Login = () => {
-    
-    const dataUser = JSON.parse(localStorage.getItem("passport"));
 
+    const decodificated = JSON.parse(localStorage.getItem("passport"));
     const navigate = useNavigate();
-    const [tokenStorage, setTokenStorage] = useState(dataUser?.token)
+
+    const [token, setToken] = useState(decodificated?.token)
 
     const [credentials, setCredentials] = useState({ //el array con las credenciales actuales del usuario // la funcion que actualiza ese estado
         email: "",
@@ -30,6 +30,15 @@ export const Login = () => {
     })
 
     const [msgError, setMsgError] = useState("")
+
+    useEffect(() => {
+        console.log(decodificated)
+        if (token) {
+            navigate("/")
+            
+        setTimeout(() => { navigate("/") }, 800) //redirige al home
+        }
+    }, [token])
 
     const inputHandler = (e) => {
         // In the CustomInput component, there is a function called functionChange with the inputHandler object. 
@@ -57,9 +66,9 @@ export const Login = () => {
 
     const logMe = async () => {
 
-        for (let credential in credentials){
-            if(credentials[credential]===""){
-            throw new Error ("email and password are required")
+        for (let credential in credentials) {
+            if (credentials[credential] === "") {
+                throw new Error("email and password are required")
             }
         }
 
