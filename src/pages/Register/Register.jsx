@@ -1,6 +1,6 @@
 
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import { CustomInput } from '../../common/Custominput/Custominput';
 import { CButton } from '../../common/CButton/CButton';
 
@@ -49,7 +49,7 @@ export const Register = () => {
         }))
 
     }
-
+    
     const RegisterUser = async () => {
 
         try {

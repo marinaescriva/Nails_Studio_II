@@ -2,6 +2,10 @@ import './Profile.css';
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import { myProfile } from '../../services/apiCalls';
+import { CustomInput } from '../../common/Custominput/Custominput';
+import { CButton } from '../../common/CButton/CButton';
+
 
 const dataUser = JSON.parse(localStorage.getItem("passport"));
 
@@ -9,8 +13,30 @@ const dataUser = JSON.parse(localStorage.getItem("passport"));
 
 export const Profile = () => {
 
+    const dataUser = JSON.parse(localStorage.getItem("passport"));
     const navigate = useNavigate()
+    const [write, setWrite] = useState("disabled");
+    const [loadedData, setLoadedData] = useState(false);
     const [tokenStorage, setTokenStorage] = useState (dataUser?.token)
+
+    const [user, setUser] = useState ({
+        name: "",
+        surname: "",
+        email:""
+    })
+
+    const [userError, setUserError] = useState ({
+        nameError: "",
+        surnameError: "",
+        emailError:""
+    })
+
+    const inputHandler = (e) => {
+        setUser((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value
+        }));
+    };
 
     useEffect(() => {
         
@@ -20,10 +46,82 @@ export const Profile = () => {
         }
     }, [tokenStorage])
 
+    useEffect (()=> {
+
+        const getmyProfile = async() => {
+            try {
+                const fetched = await myProfile(tokenStorage)
+
+                setLoadedData(true)
+
+                setUser({
+                    name: fetched.data.name,
+                    surname: fetched.data.surname,
+                    email: fetched.data.email,
+                })
+
+            } catch (error) {
+                console.log(error)
+                
+            }
+        }
+        getmyProfile ()
+
+    }, [user])
+
+
+
+
+
     return (
+        <>
+        
         <div className='profileDesign'>
-            soy {dataUser?.decodificated?.name} blabla
+            {!loadedData
+            ? (<div>Wait a moment....</div>)
+            : (<div>
+                <CustomInput
+                    className={`custominputDesign ${userError.nameError !== "" ? "custominputDesignError" : ""}`}
+                    type="text"
+                    name="name"
+                    value={user.name || ""}
+                    placeholder="your name is"
+                    disabled={write}
+                    functionChange={inputHandler}
+                    functionBlur={(e) => checkError(e)}
+                />
+                <div className='error'>{userError.nameError}</div>
+                 <CustomInput
+                    className={`custominputDesign ${userError.surnameError !== "" ? "custominputDesignError" : ""}`}
+                    type="text"
+                    name="surname"
+                    value={user.surname || ""}
+                    placeholder="your surname is"
+                    disabled={write}
+                    functionChange={inputHandler}
+                    functionBlur={(e) => checkError(e)}
+                />
+                <div className='error'>{userError.surnameError}</div>
+                 <CustomInput
+                    className={`custominputDesign ${userError.emailError !== "" ? "custominputDesignError" : ""}`}
+                    type="email"
+                    name="email"
+                    value={user.email || ""}
+                    placeholder="your email is"
+                    disabled={write}
+                    functionChange={inputHandler}
+                    functionBlur={(e) => checkError(e)}
+                />
+                <div className='error'>{userError.emailError}</div>
+                <CButton
+                    className={write === "" ? "CButtonDesign2 CButtonDesign" : "CButtonDesign"}
+                    title={write === "" ? "Confirm" : "Edit"}
+                    functionEmit={write === "" ? () => updateData() : () => setWrite("")}
+                />
+               </div>)}
         </div>
+       
+        </>
     )
 }
 
@@ -31,103 +129,3 @@ export const Profile = () => {
 
 
 
-// export const Profile2 = () => {
-
-  
-
-//     const navigate = useNavigate();
-//     const [tokenStorage, setTokenStorage] = useState(dataUser?.token)
-
-//     const [credentials, setCredentials] = useState({ //el array con las credenciales actuales del usuario // la funcion que actualiza ese estado
-//         email: "",
-//         password: ""
-//     })
-
-//     const [credentialsError, setCredentialsError] = useState({ //el array con las credenciales actuales del usuario // la funcion que actualiza ese estado
-//         emailError: "",
-//         passwordError: ""
-//     })
-
-//     const [msgError, setMsgError] = useState("")
-
-//     const inputHandler = (e) => {
-//         // In the CustomInput component, there is a function called functionChange with the inputHandler object. 
-//         // This function triggers an onChange event in the setCredenciales field.
-
-//         setCredentials((prevState) => ({
-//             ...prevState, // Shallow copy of the previous state to avoid direct modification. (prevState is a placeholder)
-//             // (...) creates a new instance.
-//             [e.target.name]: e.target.value // e.target accesses the name property of the object to be modified. [] because it access to the property refeared in e.target.name
-//             //e.target.value access to the field "name" to modified the data.
-//             // if i write in email, e.target.name is .. email.
-//             // if i write in password, e.target.name is .. password.
-//         }));
-//     };
-
-//     const checkError = (e) => {
-//         const error = validation(e.target.name, e.target.value);
-
-//         setCredentialsError((prevState) => ({
-//             ...prevState,
-//             [e.target.name + "Error"]: error,
-//         }))
-//     };
-
-
-//     const logMe = async () => {
-
-//         const fetched = await loginMe(credentials);
-
-//         if (!fetched.success) {
-
-//             setMsgError(fetched.message)
-//             return;
-//         }
-
-//         const decodificated = decodeToken(fetched.token)
-
-
-//         localStorage.setItem("passport", JSON.stringify(passport))
-//         setMsgError(`Bienvenido ${decodificated.name}`)
-//         console.log("user logged")
-
-//         setTimeout(() => { navigate("/") }, 800) //redirige al home
-//     }
-
-//     return (
-//         <>
-//             <div className='loginDesign'>
-//                 {/* <pre>{JSON.stringify(credenciales, null, 2)}</pre> */}
-//                 <CustomInput
-//                     className={`custominputDesign ${credentialsError.emailError !== "" ? "custominputDesignError" : ""}`}
-//                     type="email"
-//                     name="email" // e.target.name ref to field name and access to "email", this means in credenciales object has email: password:.
-//                     // the property in credenciales should be "email" or "password" as the content in the CustomInput name="email" and name="password"
-//                     value={credentials.email || ""}
-//                     placeholder="your email"
-//                     disabled={""}
-//                     functionChange={inputHandler}
-//                     functionBlur={(e) => checkError(e)}
-//                 />
-//                 <div className='error'>{credentialsError.emailError}</div>
-//                 <CustomInput
-//                     className={`custominputDesign ${credentialsError.passwordError !== "" ? "custominputDesignError" : ""}`}
-//                     type="password"
-//                     name="password"
-//                     value={credentials.password || ""}
-//                     placeholder="your password"
-//                     disabled={""}
-//                     functionChange={inputHandler}
-//                     functionBlur={(e) => checkError(e)}
-//                 />
-//                 <div className='error'>{credentialsError.passwordError}</div>
-//                 <CButton
-//                     className={"CButtonDesign"}
-//                     title={"Login Me"}
-//                     functionEmit={logMe}
-//                 />
-//                 <div>{msgError}</div>
-//             </div>
-//         </>
-//     )
-// }

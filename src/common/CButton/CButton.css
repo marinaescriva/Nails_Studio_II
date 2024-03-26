@@ -25,3 +25,23 @@
     cursor: pointer;
     transition: 0.4;
 }
+
+.CButtonDesign2 {
+
+    height: 4em;
+    width: 10em;
+
+    border-radius: 5em;
+    margin: 1em;
+
+    background-color: rgb(229, 84, 6);
+    color: whitesmoke;
+    font-weight: bold;
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.4;
+
+}

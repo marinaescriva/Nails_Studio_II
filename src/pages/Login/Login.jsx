@@ -88,9 +88,9 @@ export const Login = () => {
         localStorage.setItem("passport", JSON.stringify(passport))
         console.log(decodificated , "decodificated data")
 
-        setMsgError(`Bienvenido ${decodificated.name}`)
+        setMsgError(`Wellcome ${decodificated.name}`)
 
-        setTimeout(() => { navigate("/") }, 4000) //redirige al home
+        setTimeout(() => { navigate("/") }, 2000) 
     }
 
     return (

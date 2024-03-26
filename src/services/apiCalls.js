@@ -71,7 +71,7 @@ export const myProfile = async (token) => {
     }
   
     try {
-      const response = await fetch(root + "users/profile", options)
+      const response = await fetch(`${root}users/profile`, options)
   
       const data = await response.json()
   
