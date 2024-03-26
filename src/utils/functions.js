@@ -28,9 +28,10 @@ export const validation = (type, value) => {
 
             case "password":
 
-            if (value.length < 6) {
-            return "password should be longer"
+            if (value.length < 6 ) {
+            return "password incorrect"
             }
+
             return "";
 
         default:

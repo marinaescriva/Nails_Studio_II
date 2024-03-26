@@ -85,3 +85,7 @@ export const myProfile = async (token) => {
       return error
     }
   }
+
+export const getOffer = async()=>{
+    
+}
