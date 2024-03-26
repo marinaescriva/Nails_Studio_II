@@ -3,32 +3,27 @@ import './Profile.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
-// import { loginMe } from '../../services/apiCalls';
-// import { validation } from '../../utils/functions';
-// import { CustomInput } from '../../common/Custominput/Custominput';
-// import { decodeToken } from "react-jwt"
-// import { CButton } from '../../common/CButton/CButton';
-
-const {decodificated} = JSON.parse(localStorage.getItem("passport"));
+const dataUser = JSON.parse(localStorage.getItem("passport"));
 
 /* dataUser */
 
 export const Profile = () => {
 
-    const dataUser = JSON.parse(localStorage.getItem("passport"));
     const navigate = useNavigate()
-    const [token, setToken] = useState (decodificated?.token)
+    const [tokenStorage, setTokenStorage] = useState (dataUser?.token)
 
     useEffect(() => {
-        console.log(token , "hola")
-        if(!decodificated.token){
+        
+        if(!tokenStorage){
             navigate("/")
         /* redirect to home if you are not logged */
         }
-    }, [token])
+    }, [tokenStorage])
 
     return (
-        <div className='profileDesign'>soy {decodificated?.name} blabla</div>
+        <div className='profileDesign'>
+            soy {dataUser?.decodificated?.name} blabla
+        </div>
     )
 }
 

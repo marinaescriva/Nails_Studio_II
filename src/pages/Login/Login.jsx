@@ -1,23 +1,19 @@
 import { useState, useEffect } from 'react';
-import { CustomInput } from '../../common/Custominput/Custominput';
-
-import { decodeToken } from "react-jwt"
 import { CButton } from '../../common/CButton/CButton';
-import { useNavigate } from "react-router-dom";
-
-import './Login.css';
-
-import { loginMe } from '../../services/apiCalls';
+import { CustomInput } from '../../common/Custominput/Custominput';
 import { validation } from '../../utils/functions';
+import './Login.css';
+import { loginMe } from '../../services/apiCalls';
+import { useNavigate } from "react-router-dom";
+import { decodeToken } from "react-jwt"
 
 
+const dataUser = JSON.parse(localStorage.getItem("passport"));
 
 export const Login = () => {
-
-    const decodificated = JSON.parse(localStorage.getItem("passport"));
+   
     const navigate = useNavigate();
-
-    const [token, setToken] = useState(decodificated?.token)
+    const [tokenStorage, setTokenStorage] = useState(dataUser?.token)
 
     const [credentials, setCredentials] = useState({ //el array con las credenciales actuales del usuario // la funcion que actualiza ese estado
         email: "",
@@ -32,13 +28,13 @@ export const Login = () => {
     const [msgError, setMsgError] = useState("")
 
     useEffect(() => {
-        console.log(decodificated)
-        if (token) {
+     
+        if (tokenStorage) {
             navigate("/")
             
         setTimeout(() => { navigate("/") }, 800) //redirige al home
         }
-    }, [token])
+    }, [tokenStorage])
 
     const inputHandler = (e) => {
         // In the CustomInput component, there is a function called functionChange with the inputHandler object. 
@@ -90,11 +86,11 @@ export const Login = () => {
         }
 
         localStorage.setItem("passport", JSON.stringify(passport))
-        console.log(passport)
+        console.log(decodificated , "decodificated data")
 
         setMsgError(`Bienvenido ${decodificated.name}`)
 
-        setTimeout(() => { navigate("/") }, 800) //redirige al home
+        setTimeout(() => { navigate("/") }, 4000) //redirige al home
     }
 
     return (
