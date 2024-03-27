@@ -140,3 +140,7 @@ export const getStudioServices = async () => {
   }
 
 }
+
+export const getAppointments = async () => {
+  
+}

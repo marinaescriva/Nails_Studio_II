@@ -1,11 +1,11 @@
 import './Appointments.css'
-import { Header } from '../../Common/Header/Header';
+
+import { getAppointments } from '../../services/apiCalls';
 
 export const Appointments = () => {
 
     return (
         <>
-            <Header />
             <div className='appointmentsDesign'>
                 Soy la vista Appointment
             </div>

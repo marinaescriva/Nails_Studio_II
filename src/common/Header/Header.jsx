@@ -34,6 +34,10 @@ export const Header = () => {
                             title={passport?.decodificated?.name}
                             destination="/profile"
                         />
+                        <CustomLink
+                            title="Appoitments"
+                            destination="/appointments"
+                        />
 
                         <div onClick={logOut}>
                             <CustomLink
