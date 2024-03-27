@@ -16,21 +16,16 @@ export const Header = () => {
 
     }
 
-    // const appointments = () => {
-
-    //     navigate("/appointments")
-    // }
-
     return (
         <div className='headerDesign'>
             <CustomLink
                 title="Home"
                 destination="/"
             />
-            {/* <CustomLink
-                title="Offers"
-                destination="/offer"
-            /> */}
+            <CustomLink
+                title="Studio"
+                destination="/studio"
+            />
             {passport?.token
                 ? (
                     <div className="menu">

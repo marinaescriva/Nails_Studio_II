@@ -3,117 +3,117 @@ const root = "http://localhost:4000/api/"
 export const loginMe = async (credentials) => {
 
 
-    const options = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(credentials),
-        
-    };
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(credentials),
 
-    
+  };
 
-    try {
-     
-        const response = await fetch(`${root}auth/login`, options)
-        const data = await response.json()
-      
 
-        if(!data.success){ 
-            throw new Error(data.message)
-        }
 
-        return data;
+  try {
 
-    } catch (error) {
-        
-        return error;
+    const response = await fetch(`${root}auth/login`, options)
+    const data = await response.json()
+
+
+    if (!data.success) {
+      throw new Error(data.message)
     }
+
+    return data;
+
+  } catch (error) {
+
+    return error;
+  }
 
 }
 
 
 export const registerMe = async (credentials) => {
 
-    const options = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(credentials),
-    };
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(credentials),
+  };
 
-    try {
+  try {
     // auth/register
     const response = await fetch(`${root}auth/register`, options)
     const data = await response.json()
-        
+
     if (!data.success) {
-        throw new Error (data.message)
+      throw new Error(data.message)
     }
 
     return data;
-    } catch (error) {
-        return error
-    }
+  } catch (error) {
+    return error
+  }
 
 }
 
 export const myProfile = async (token) => {
 
-    const options = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      }
-    }
-  
-    try {
-      const response = await fetch(`${root}users/profile`, options)
-  
-      const data = await response.json()
-  
-      if (!data.success) {
-        throw new Error(data.message)
-      }
-  
-      return data
-  
-    } catch (error) {
-      return error
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
     }
   }
 
-  export const updateProfile = async (token , newData) => {
+  try {
+    const response = await fetch(`${root}users/profile`, options)
 
-    const options = {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      },
-      body:JSON.stringify(newData)
+    const data = await response.json()
+
+    if (!data.success) {
+      throw new Error(data.message)
     }
-  
-    try {
-      const response = await fetch(`${root}users/profile`, options)
-  
-      const data = await response.json()
-  
-      if (!data.success) {
-        throw new Error(data.message)
-      }
-  
-      return data.data
-  
-    } catch (error) {
-      return error
-    }
+
+    return data
+
+  } catch (error) {
+    return error
+  }
+}
+
+export const updateProfile = async (token, newData) => {
+
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify(newData)
   }
 
+  try {
+    const response = await fetch(`${root}users/profile`, options)
 
-export const getOffer = async()=>{
-    
+    const data = await response.json()
+
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+
+    return data.data
+
+  } catch (error) {
+    return error
+  }
+}
+
+
+export const getOffer = async () => {
+
 }

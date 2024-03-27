@@ -1,14 +1,14 @@
-/* .offerDesign {
+.studioDesign {
 
     height: 84vh;
     width: 100vw;
     
 
-    background-color: rgb(250, 181, 153);
+    background-color: rgb(255, 181, 116);
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-} */
+}

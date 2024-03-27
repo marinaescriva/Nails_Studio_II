@@ -89,14 +89,12 @@ export const Profile = () => {
                 surname: fetched.surname || prevState.surname,
                 email: fetched.email || prevState.email         
             }));
-            
+
             setWrite("disabled")
         } catch (error) {
             console.log(error.message);
         }
     }
-
-
 
     return (
         <>
