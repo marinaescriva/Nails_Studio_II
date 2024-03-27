@@ -114,6 +114,29 @@ export const updateProfile = async (token, newData) => {
 }
 
 
-export const getOffer = async () => {
+export const getStudioServices = async () => {
+
+  
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }
+
+  try {
+    const response = await fetch(`${root}services`, options)
+
+    const data = await response.json()
+
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+
+    return data
+
+  } catch (error) {
+    return error
+  }
 
 }
