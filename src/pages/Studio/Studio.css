@@ -12,3 +12,13 @@
     align-items: center;
 
 }
+
+.studioService {
+    background-color: rgb(2, 227, 89);
+    color:rgb(222, 0, 0);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
