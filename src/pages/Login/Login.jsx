@@ -70,14 +70,6 @@ export const Login = () => {
 
         const fetched = await loginMe(credentials)
 
-        // const fetched = await loginMe(credentials);
-
-        // if (!fetched.success) {
-
-        //     setMsgError(fetched.message)
-        //     return;
-        // }
-
         const decodificated = decodeToken(fetched.token)
 
         const passport = {
@@ -88,7 +80,7 @@ export const Login = () => {
         localStorage.setItem("passport", JSON.stringify(passport))
         console.log(decodificated , "decodificated data")
 
-        setMsgError(`Wellcome ${decodificated.name}`)
+        setMsgError(`Wellcome ${decodificated?.name}`)
 
         setTimeout(() => { navigate("/") }, 2000) 
     }

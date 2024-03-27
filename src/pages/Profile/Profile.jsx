@@ -2,9 +2,11 @@ import './Profile.css';
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { myProfile } from '../../services/apiCalls';
+import { myProfile, updateProfile} from '../../services/apiCalls';
 import { CustomInput } from '../../common/Custominput/Custominput';
+import { Header } from '../../common/Header/Header';
 import { CButton } from '../../common/CButton/CButton';
+import { validation } from '../../utils/functions';
 
 
 const dataUser = JSON.parse(localStorage.getItem("passport")); ///??????
@@ -37,6 +39,15 @@ export const Profile = () => {
             [e.target.name]: e.target.value
         }));
     };
+   
+    const checkError = (e) => {
+        const error = validation(e.target.name, e.target.value);
+    
+        setUserError((prevState) => ({
+          ...prevState,
+          [e.target.name + "Error"]: error,
+        }));
+      };
 
     useEffect(() => {
         
@@ -66,10 +77,24 @@ export const Profile = () => {
             }
         }
         getmyProfile ()
+    }, [])
 
-    }, [user])
+    const updateData = async () => {
 
-
+        try {
+            const fetched = await updateProfile(tokenStorage, user)
+            setUser((prevState) => ({
+                ...prevState,
+                name: fetched.name || prevState.name,
+                surname: fetched.surname || prevState.surname,
+                email: fetched.email || prevState.email         
+            }));
+            
+            setWrite("disabled")
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
 
 
 
@@ -82,41 +107,41 @@ export const Profile = () => {
             : (<div>
                 <CustomInput
                     className={`custominputDesign ${userError.nameError !== "" ? "custominputDesignError" : ""}`}
-                    type="text"
-                    name="name"
+                    type={"name"}
+                    name={"name"}
                     value={user.name || ""}
-                    placeholder="your name is"
+                    placeholder=""
                     disabled={write}
-                    functionChange={inputHandler}
+                    functionChange={(e) =>inputHandler(e)}
                     functionBlur={(e) => checkError(e)}
                 />
                 <div className='error'>{userError.nameError}</div>
                  <CustomInput
                     className={`custominputDesign ${userError.surnameError !== "" ? "custominputDesignError" : ""}`}
-                    type="text"
-                    name="surname"
+                    type={"surname"}
+                    name={"surname"}
                     value={user.surname || ""}
-                    placeholder="your surname is"
-                    disabled={write}
-                    functionChange={inputHandler}
+                    placeholder=""
+                    disabled={"disabled"}
+                    functionChange={(e) =>inputHandler(e)}
                     functionBlur={(e) => checkError(e)}
                 />
                 <div className='error'>{userError.surnameError}</div>
                  <CustomInput
                     className={`custominputDesign ${userError.emailError !== "" ? "custominputDesignError" : ""}`}
-                    type="email"
-                    name="email"
+                    type={"email"}
+                    name={"email"}
                     value={user.email || ""}
-                    placeholder="your email is"
-                    disabled={write}
-                    functionChange={inputHandler}
+                    placeholder=""
+                    disabled={"disabled"}
+                    functionChange={(e) =>inputHandler(e)}
                     functionBlur={(e) => checkError(e)}
                 />
                 <div className='error'>{userError.emailError}</div>
                 <CButton
                     className={write === "" ? "CButtonDesign2 CButtonDesign" : "CButtonDesign"}
                     title={write === "" ? "Confirm" : "Edit"}
-                    functionEmit={write === "" ? () => updateData() : () => setWrite("")}
+                    functionEmit={write === "" ? updateData : () => setWrite("")}
                 />
                </div>)}
         </div>
