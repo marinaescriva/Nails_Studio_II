@@ -35,7 +35,7 @@ export const Header = () => {
                             destination="/profile"
                         />
                         <CustomLink
-                            title="Appoitments"
+                            title="Appointments"
                             destination="/appointments"
                         />
 

@@ -1,15 +1,15 @@
 .appointmentsDesign {
-    height: 76vh;
+    height: 84vh;
     width: 100vw;
 
     background-color:lightpink;
 
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    
     justify-content: center;
     align-items: center;
 }
-
 
 .inputDesign{
  
@@ -24,6 +24,7 @@
     width:fit-content;
 
 }
+
 .inputDesign:focus {
 
     outline-style:groove;

@@ -116,7 +116,7 @@ export const updateProfile = async (token, newData) => {
 
 export const getStudioServices = async () => {
 
-  
+
   const options = {
     method: "GET",
     headers: {
@@ -142,5 +142,30 @@ export const getStudioServices = async () => {
 }
 
 export const getAppointments = async () => {
-  
+
+
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+
+  }
+
+  try {
+    const response = await fetch(`${root}appointments`, options)
+
+    const data = await response.json()
+
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+
+    return data
+
+  } catch (error) {
+    return error
+  }
+
 }
