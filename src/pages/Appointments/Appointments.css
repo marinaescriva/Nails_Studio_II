@@ -31,4 +31,12 @@
     outline-color: brown;
      
     }
+.appointStype {
 
+    color:rgb(180, 105, 58);
+
+    width: 3em;
+    height: 8em;
+
+    background-color: chartreuse;
+}

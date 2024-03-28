@@ -19,6 +19,7 @@ export const Register = () => {
         email: "",
         password: "",
     })
+
     const [credentialsError, setCredentialsError] = useState({
         nameError: "",
         surnameError: "",
@@ -39,6 +40,7 @@ export const Register = () => {
             })
         )
     }
+    
     const checkError = (e) => {
 
         const error = validation(e.target.name, e.target.value);

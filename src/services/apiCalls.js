@@ -141,31 +141,15 @@ export const getStudioServices = async () => {
 
 }
 
-export const getAppointments = async () => {
+export const getAppointments = async (token) => {
 
 
-  const options = {
+  const options = await fetch( {
     method: "GET",
     headers: {
-      "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`
     },
-
-  }
-
-  try {
-    const response = await fetch(`${root}appointments`, options)
-
-    const data = await response.json()
-
-    if (!data.success) {
-      throw new Error(data.message)
-    }
-
-    return data
-
-  } catch (error) {
-    return error
-  }
-
+  });
+  
+  return options.json();
 }
