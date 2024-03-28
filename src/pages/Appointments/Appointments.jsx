@@ -8,6 +8,8 @@ export const Appointments = () => {
         <>
             <div className='appointmentsDesign'>
                 Soy la vista Appointment
+                <div className='inputDesign'>afsgdfgfhgj </div>
+                <div className='inputDesign'> dszfdxfcgnhvb</div>
             </div>
         </>
     )
