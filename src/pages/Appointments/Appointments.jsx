@@ -35,69 +35,82 @@ export const Appointments = () => {
             }
         }
 
+        
+
     }, [appointments])
 
-    const [msgError, setMsgError] = useState("");
-    const doAppointment = async () => {
+    // const [msgError, setMsgError] = useState("");
 
-        try {
+    // const doAppointment = async () => {
 
-            for (let element in credentials) {
-                if (credentials[element] === "") {
-                    throw new Error("All fields should be completed")
-                }
-            }
-            const fetched = await registerMe(credentials);
-            setMsgError(fetched.message);
-            setTimeout(() => { navigate("/login") }, 820)
+    //     try {
 
-
-        } catch (error) {
-            setMsgError(error.message)
-            return;
-        }
-
-    }
-
-    const newAppointment = async () => {
-
-        try {
-
-            for (let element in credentials) {
-                if (credentials[element] === "") {
-                    throw new Error("All fields should be completed")
-                }
-            }
-            const fetched = await registerMe(credentials);
-            setMsgError(fetched.message);
-            setTimeout(() => { navigate("/profile") }, 820) 
+    //         for (let element in credentials) {
+    //             if (credentials[element] === "") {
+    //                 throw new Error("All fields should be completed")
+    //             }
+    //         }
+    //         const fetched = await registerMe(credentials);
+    //         setMsgError(fetched.message);
+    //         setTimeout(() => { navigate("/login") }, 820)
 
 
-        } catch (error) {
-            setMsgError(error.message)
-            return;
-        }
+    //     } catch (error) {
+    //         setMsgError(error.message)
+    //         return;
+    //     }
 
-    }
+    // }
+
+    // const newAppointment = async () => {
+
+    //     try {
+
+    //         for (let element in credentials) {
+    //             if (credentials[element] === "") {
+    //                 throw new Error("All fields should be completed")
+    //             }
+    //         }
+    //         const fetched = await registerMe(credentials);
+    //         setMsgError(fetched.message);
+    //         setTimeout(() => { navigate("/profile") }, 820) 
+
+
+    //     } catch (error) {
+    //         setMsgError(error.message)
+    //         return;
+    //     }
+
+    // }
 
     return (
         <>
-            <div className='appointmentsDesign'> 
-            <CustomInput
-                    className={`custominputDesign`}
-                    type={"text"}
-                    name={"name"}
-                    value={dayjs || ""}
-                    placeholder={"date"}
+            <div className='appointmentsDesign'>
+                <CustomInput
+                    className={`inputDesign`}
+                    type={"DD/MM/YYYY"}
+                    name={"date"}
+                    value={appointmentsData.appointment_date || ""}
+                    placeholder={""}
                     disabled={""}
-                    functionChange={(e) => inputHandler(e)}
-                    functionBlur={(e) => checkError(e)}
+                    functionChange={(e) => appointmentInputHandler(e)}
+                // functionBlur={(e) => checkError(e)}
                 />
-                <CButton
+                <CustomInput
+                    className={`inputDesign`}
+                    type={"text"}
+                    name={"service"}
+                    value={appointmentsData.service_id || ""}
+                    placeholder={""}
+                    disabled={""}
+                    functionChange={(e) => appointmentInputHandler(e)}
+                // functionBlur={(e) => checkError(e)}
+                />
+                {/* <CButton
                     className={"CButtonDesign"}
                     title={"New appointment"}
                     functionEmit={newAppointment}
-                />
+                /> */}
             </div>
         </>
     )
