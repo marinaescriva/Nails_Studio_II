@@ -16,29 +16,4 @@
     color: grey;
 }
 
-/* .inputDesign{
-
-    border-radius: 0.9em;
-    border: 0.2em solid rgb(180, 105, 58);
-    border-style:hidden;
-
-    text-align: center;
-
-    margin: 1em;
-    height: 5vh;
-    width:fit-content;
-
-}
-.inputDesign:focus {
-
-    outline-style:groove;
-    outline-color: brown;
-     
-    }
-    
-.inputError{
-    background-color: rgb(93, 21, 169); 
-    color:darkred;
-    /* no funciona esto hasta q no exista la validacion  */
-    
 

@@ -3,12 +3,14 @@
     height: 84vh;
     width: 100vw;
 
-    color: rgb(0, 0, 0);
-    background-color:   rgb(215, 182, 165);;
+    color: rgb(87, 67, 26);
+    background-image: url('../../img/neonail1.jpg');
 
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
+
+
 

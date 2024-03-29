@@ -3,7 +3,7 @@
     height: 16vh;
     width: 100vw;
 
-    background-color: #e40000;
+    background-color: #ffffff;
     
     display: flex;
     flex-direction: row;
@@ -15,6 +15,4 @@
 .menu {
     display: flex;
     flex-direction: row;
-
-    color:blueviolet; /*????*/
 }
