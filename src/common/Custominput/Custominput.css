@@ -1,7 +1,7 @@
 .custominputDesign {
 
     border-radius: 0.9em;
-    border: 0.2em solid rgb(180, 105, 58);
+    border: 0.2em solid rgb(255, 255, 255);
     border-style:hidden;
 
     text-align: center;
@@ -12,7 +12,7 @@
 
 }
 .custominputDesign :disabled{
-    background-color: red
+    background-color: rgb(130, 50, 0)
     }
 .custominputDesignError{
 
@@ -22,8 +22,8 @@
 .custominputDesign2 {
 
        
-    color:blueviolet;
-    background-color: crimson;
+    color:rgb(70, 53, 13);
+    background-color: rgb(255, 235, 146);
 
 }
 

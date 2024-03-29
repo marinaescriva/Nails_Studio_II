@@ -6,8 +6,8 @@
     border-radius: 5em;
     margin: 1em;
 
-    background-color: rgb(103, 59, 35);
-    color: whitesmoke;
+    background-color: rgb(255, 255, 255);
+    color: rgb(103,59,35);
     font-weight: bold;
 
     display:flex;
@@ -20,8 +20,8 @@
 
 .CButtonDesign:hover {
 
-    background-color: whitesmoke;
-    color: rgb(103,59,35);
+    background-color: rgb(103,59,35);
+    color: rgb(255, 255, 255);
     cursor: pointer;
     transition: 0.4;
 }
@@ -34,8 +34,8 @@
     border-radius: 5em;
     margin: 1em;
 
-    background-color: rgb(229, 84, 6);
-    color: whitesmoke;
+    background-color: rgb(255, 255, 255);
+    color: rgb(103,59,35);
     font-weight: bold;
 
     display:flex;

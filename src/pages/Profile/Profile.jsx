@@ -119,7 +119,7 @@ export const Profile = () => {
                 />
                 <div className='error'>{userError.nameError}</div>
                  <CustomInput
-                    className={`custominputDesign ${userError.surnameError !== "" ? "custominputDesignError" : ""}`}
+                    className={`inputDesign ${userError.surnameError !== "" ? "inputDesignError" : ""}`}
                     type={"surname"}
                     name={"surname"}
                     value={user.surname || ""}

@@ -4,7 +4,7 @@
     width: 100vw;
     
 
-    background-color: rgb(69, 206, 199);
+    background-color: rgb(206, 151, 96);
 
     display: flex;
     flex-direction: column;
@@ -29,13 +29,13 @@
 .inputDesign:focus {
 
     outline-style:groove;
-    outline-color: brown;
+    outline-color: rgb(255, 255, 255);
      
 }
 .inputDesignError {
-    color:brown;
+    color:rgb(255, 255, 255);
 }
 .inputDesign:disabled {
-    background-color: chartreuse;
+    background-color: rgb(255, 255, 255);
 }
   

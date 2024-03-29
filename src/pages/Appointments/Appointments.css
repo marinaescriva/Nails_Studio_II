@@ -17,7 +17,7 @@
     border: 0.2em solid rgb(180, 105, 58);
     border-style: hidden;
 
-    background-color: hsla(28, 94%, 42%, 0.287);
+    /* background-color: hsla(28, 94%, 42%, 0.287); */
     color: rgb(180, 105, 58);
     text-align: center;
 
@@ -28,8 +28,8 @@
 }
 
 .inputDesign:disabled {
-    background-color: blue;
-    color: yellow;
+    background-color: rgb(255, 160, 101);
+    color: rgb(164, 85, 0);
 }
 
 .inputDesign:focus {
@@ -46,5 +46,9 @@
     width: 3em;
     height: 8em;
 
-    background-color: chartreuse;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
