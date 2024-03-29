@@ -108,7 +108,7 @@ export const Profile = () => {
             ? (<div>Wait a moment....</div>)
             : (<div>
                 <CustomInput
-                    className={`inputDesign ${userError.nameError !== "" ? "inputDesignError" : ""}`}
+                    className={`custominputDesign ${userError.nameError !== "" ? "inputDesignError" : ""}`}
                     type={"name"}
                     name={"name"}
                     value={user.name || ""}
@@ -119,7 +119,7 @@ export const Profile = () => {
                 />
                 <div className='error'>{userError.nameError}</div>
                  <CustomInput
-                    className={`inputDesign ${userError.surnameError !== "" ? "inputDesignError" : ""}`}
+                    className={`custominputDesign ${userError.surnameError !== "" ? "inputDesignError" : ""}`}
                     type={"surname"}
                     name={"surname"}
                     value={user.surname || ""}
@@ -130,7 +130,7 @@ export const Profile = () => {
                 />
                 <div className='error'>{userError.surnameError}</div>
                  <CustomInput
-                    className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""}`}
+                    className={`custominputDesign ${userError.emailError !== "" ? "inputDesignError" : ""}`}
                     type={"email"}
                     name={"email"}
                     value={user.email || ""}

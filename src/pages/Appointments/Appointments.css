@@ -1,13 +1,20 @@
 .appointmentsDesign {
-    height: 84vh;
+    min-height: 84vh;
     width: 100vw;
 
-    background-color: lightpink;
+    background-color:  rgb(160, 144, 128);
     flex-direction: row;
     display: flex;
 
     justify-content: center;
     align-items: center;
+}
+.appointmentsText {
+    color:bisque;
+    font-weight: bold;
+}
+.appointmentsInfo{
+    color:aliceblue;
 }
 
 .inputDesign {

@@ -1,6 +1,6 @@
 import './Appointments.css'
 import { useEffect, useState } from 'react';
-import { getAppointments, createAppointment } from '../../services/apiCalls';
+import { getAppointments, createAppointment, deleteAppointment  } from '../../services/apiCalls';
 import { getStudioServices } from '../../services/apiCalls';
 import { CDropdown } from '../../common/CDropDown/CDropDown';
 import { CustomInput } from '../../common/Custominput/Custominput';
@@ -20,7 +20,7 @@ export const Appointments = () => {
     const [appointments, setAppointments] = useState([])
     const [appointmentsData, setAppointmentsData] = useState({
 
-        appointment_date: "",
+        appointmentDate: "",
         service_id: ""
 
     });
@@ -40,7 +40,10 @@ export const Appointments = () => {
     const newAppointment = async () => {
         try {
             const response = await createAppointment(tokenStorage, appointmentsData)
-    
+            const appointmentsOld = appointments
+            appointmentsOld.push(response.data)
+            setAppointments(appointmentsOld)
+
             console.log(response)
         } catch (error) {
             console.log(error)
@@ -55,6 +58,7 @@ export const Appointments = () => {
                 try {
                     const fetched = await getStudioServices()
                     setStudioServices(fetched.data);
+                   
 
                 } catch (error) {
                     console.log(error)
@@ -73,62 +77,79 @@ export const Appointments = () => {
                 const fetched = await getAppointments(tokenStorage)
                 setAppointments(fetched.data);
                 setLoadedData(true)
-                console.log(fetched.data)
-
 
             } catch (error) {
                 console.log(error.message)
             }
         }
-        if (!loadedData) {
+        // if (!loadedData) {
             getAppointmentsInfo()
+        // }
+
+    }, [appointments])
+
+    const deletingAppointment = async (appointmentId) => {
+        try {
+            const fetched = await deleteAppointment(tokenStorage , appointmentId)
+            console.log(fetched)
+            if (fetched.success){
+            setAppointments(appointments.filter(items => items.id !== appointmentId))
+
+            }
+        } catch (error) {
+            console.log(error)
         }
-
-    }, [loadedData, tokenStorage])
-
+    }
 
     return (
         <>
             <div className='appointmentsDesign'>
                 <div className='appointmentForm'>
-                <div className='appointmentForm2'>
-                    <h4>Book an appointment</h4>
-                    <CustomInput
-                        className={"inputDesign"}
-                        type="date"
-                        name="appointment_date"
-                        value={appointmentsData.appointment_date || ""}
-                        placeholder="DD/MM/YYYY"
-                        disabled={""}
-                        functionChange={(e) => inputHandler(e)}
+                    <div className='appointmentForm2'>
+                        <h4 className='appointmentsText'>Book an appointment</h4>
+                        <CustomInput
+                            className={"inputDesign"}
+                            type="date"
+                            name="appointmentDate"
+                            value={appointmentsData.appointmentDate || ""}
+                            placeholder="DD/MM/YYYY"
+                            disabled={""}
+                            functionChange={(e) => inputHandler(e)}
+                        />
 
-                    />
-                    <CDropdown
-                        buttonClass={""}
-                        dropdownClass={""}
-                        title={"service_id"}
-                        items={studioServices}
-                        onChangeFunction={(e) => {inputHandler(e)}}
-                    />
+                        <CDropdown
+                            buttonClass={""}
+                            dropdownClass={""}
+                            title={"service_id"}
+                            items={studioServices}
+                            onChangeFunction={(e) => { inputHandler(e) }}
+                        />
                     </div>
                     <CButton
-                            className={"CButtonDesign"}
-                            title={"New appointment"}
-                            functionEmit={newAppointment}
-                        />
+                        className={"CButtonDesign"}
+                        title={"New appointment"}
+                        functionEmit={() => newAppointment(appointments)}
+                    />
                     <div className='appointmentForm2'>
 
-                        <h4>Your appointments</h4>
+                        <h4 className='appointmentsText'>Your appointments</h4>
+                     
                         {
+                           
                             loadedData && appointments.length > 0
                                 ? (appointments.map(appointment => {
                                     {/*devuelve los appointments del usuario*/ }
                                     return (
                                         <div key={appointment.id} className='appointStyle'>
-                                            <div>{appointment.service.id}</div>
-                                            <div>{appointment.service && appointment.service.name}</div>
-                                            <div>{appointment.appointmentDate}</div>
+                                            <div className='appointmentsInfo'>{appointment.service.id}</div>
+                                            <div className='appointmentsInfo'>{appointment.service && appointment.service.name}</div>
+                                            <div className='appointmentsInfo'>{appointment.appointmentDate}</div>
                                             <div className='CButton' id={appointment.id} onClick={() => { }}> OK</div> {/*deleteFunction*/}
+                                            <CButton
+                                                className={"CButtonDesign"}
+                                                title={"Delete appointment"}
+                                                functionEmit={() => deletingAppointment(appointment.id)}
+                                            />
                                         </div>
                                     )
                                 })

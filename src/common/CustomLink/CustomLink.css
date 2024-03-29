@@ -1,9 +1,11 @@
 .navigateDesign {
 
     font-weight: bold;
-    color: rgb(243 143 0);
+    color: rgb(255, 255, 255);
     margin: 1em;
     text-align: justify;
+    user-select: none;
+    background-color: transparent;
 }
 
 .navigateDesign:hover{

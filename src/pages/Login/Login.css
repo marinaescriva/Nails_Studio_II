@@ -3,7 +3,7 @@
     height: 84vh;
     width: 100vw;
 
-    background-color: rgb(250, 181, 153);
+    background-color: rgb(160, 144, 128);
 
     display: flex;
     flex-direction: column;
@@ -15,7 +15,7 @@
 .inputDesign{
  
     border-radius: 0.9em;
-    border: 0.2em solid rgb(180, 105, 58);
+    border: 0.2em solid rgb(190, 132, 96);
     border-style:hidden;
 
     text-align: center;
