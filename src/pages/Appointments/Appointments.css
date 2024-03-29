@@ -2,38 +2,46 @@
     height: 84vh;
     width: 100vw;
 
-    background-color:lightpink;
+    background-color: lightpink;
 
     display: flex;
     flex-wrap: wrap;
-    
+
     justify-content: center;
     align-items: center;
 }
 
-.inputDesign{
- 
+.inputDesign {
+
     border-radius: 0.9em;
     border: 0.2em solid rgb(180, 105, 58);
-    border-style:hidden;
+    border-style: hidden;
 
+    background-color: hsla(28, 94%, 42%, 0.287);
+    color: rgb(180, 105, 58);
     text-align: center;
 
     margin: 1em;
     height: 5vh;
-    width:fit-content;
+    width: fit-content;
 
+}
+
+.inputDesign:disabled {
+    background-color: blue;
+    color: yellow;
 }
 
 .inputDesign:focus {
 
-    outline-style:groove;
+    outline-style: groove;
     outline-color: brown;
-     
-    }
+
+}
+
 .appointStype {
 
-    color:rgb(180, 105, 58);
+    color: rgb(180, 105, 58);
 
     width: 3em;
     height: 8em;

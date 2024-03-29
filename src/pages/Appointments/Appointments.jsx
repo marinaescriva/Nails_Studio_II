@@ -1,8 +1,9 @@
 import './Appointments.css'
 import { useEffect, useState } from 'react';
-import { getAppointments } from '../../services/apiCalls';
+import { getAppointments, createAppointment } from '../../services/apiCalls';
 import { getStudioServices } from '../../services/apiCalls';
 import { CDropdown } from '../../common/CDropDown/CDropDown';
+import { CustomInput } from '../../common/Custominput/Custominput';
 
 const dataUser = JSON.parse(localStorage.getItem("passport"));
 
@@ -27,12 +28,27 @@ export const Appointments = () => {
 
     const inputHandler = (e) => {
 
-        setCredentials(
+        setAppointmentsData(
             (prevState) => ({
                 ...prevState,
                 [e.target.name]: e.target.value,
             })
         )
+    }
+
+    const newAppointment = async () => {
+        try {
+            const response = await createAppointment(tokenStorage, appointmentsData)
+            const data = response.data
+            setAppointmentsData({
+                appointment_date: data.appointment_date,
+                service_id: data.service_id
+              
+            })
+        } catch (error) {
+            console.log(error)
+
+        }
     }
 
     useEffect(() => {
@@ -58,9 +74,9 @@ export const Appointments = () => {
             try {
 
                 const fetched = await getAppointments(tokenStorage)
-              
                 setAppointments(fetched.data);
                 setLoadedData(true)
+                console.log(fetched.data)
 
 
             } catch (error) {
@@ -83,20 +99,31 @@ export const Appointments = () => {
                             ? (appointments.map(appointment => {
                                 return (
                                     <div key={appointment.id} className='appointStyle'>
-                                        <div>{appointment.service_id}</div>
+                                        <div>{appointment.service.id}</div>
                                         <div>{appointment.service && appointment.service.name}</div>
-                                        <div>{appointment.appointment_date}</div>
+                                        <div>{appointment.appointmentDate}</div>
+                                        <div className='CButton' id={appointment.id} onClick={()=>{}}> OK</div> {/*deleteFunction*/}
                                     </div>
                                 )
                             })
                             ) : ("null")
                     }
+                    <CustomInput
+                        className={"inputDesign"}
+                        type="date"
+                        name="appointment_date"
+                        value={appointmentsData.appointment_date || ""}
+                        placeholder="DD/MM/YYYY"
+                        disabled={""}
+                        functionChange={(e)=>inputHandler(e)}
+
+                    />
                     <CDropdown
                         buttonClass={"a"}
                         dropdownClass={"b"}
-                        title={"patata"}
+                        title={"services"}
                         items={studioServices}
-                        onChangeFunction= { () => {}}
+                        onChangeFunction={() => { }}
                     />
                 </div>
             </div>

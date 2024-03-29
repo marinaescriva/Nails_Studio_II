@@ -16,7 +16,7 @@
 .inputDesign{
  
     border-radius: 0.9em;
-    border: 0.2em solid rgb(180, 105, 58);
+    /* border: 0.2em solid rgb(180, 105, 58); */
     border-style:hidden;
 
     text-align: center;
@@ -31,4 +31,11 @@
     outline-style:groove;
     outline-color: brown;
      
-    }
+}
+.inputDesignError {
+    color:brown;
+}
+.inputDesign:disabled {
+    background-color: chartreuse;
+}
+  

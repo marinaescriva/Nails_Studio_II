@@ -1,4 +1,6 @@
 import './Profile.css';
+import '../../common/CButton/CButton.css';
+import '../../common/Custominput/Custominput.css';
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -106,7 +108,7 @@ export const Profile = () => {
             ? (<div>Wait a moment....</div>)
             : (<div>
                 <CustomInput
-                    className={`custominputDesign ${userError.nameError !== "" ? "custominputDesignError" : ""}`}
+                    className={`inputDesign ${userError.nameError !== "" ? "inputDesignError" : ""}`}
                     type={"name"}
                     name={"name"}
                     value={user.name || ""}
@@ -128,7 +130,7 @@ export const Profile = () => {
                 />
                 <div className='error'>{userError.surnameError}</div>
                  <CustomInput
-                    className={`custominputDesign ${userError.emailError !== "" ? "custominputDesignError" : ""}`}
+                    className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""}`}
                     type={"email"}
                     name={"email"}
                     value={user.email || ""}
