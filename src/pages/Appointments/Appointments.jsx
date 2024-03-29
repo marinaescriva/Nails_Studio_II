@@ -1,9 +1,10 @@
 import './Appointments.css'
 import { useEffect, useState } from 'react';
 import { getAppointments } from '../../services/apiCalls';
+import { getStudioServices } from '../../services/apiCalls';
+import { CDropdown } from '../../common/CDropDown/CDropDown';
 
-
-const dataUser = JSON.parse(localStorage.getItem("passport")); ///??????
+const dataUser = JSON.parse(localStorage.getItem("passport"));
 
 
 export const Appointments = () => {
@@ -12,6 +13,7 @@ export const Appointments = () => {
     const dataUser = JSON.parse(localStorage.getItem("passport"));
     const [tokenStorage, setTokenStorage] = useState(dataUser?.token)
     const [loadedData, setLoadedData] = useState(false);
+    const [studioServices, setStudioServices] = useState([])
 
     const [appointments, setAppointments] = useState([])
     const [appointmentsData, setAppointmentsData] = useState({
@@ -32,6 +34,24 @@ export const Appointments = () => {
             })
         )
     }
+
+    useEffect(() => {
+
+        if (studioServices.length === 0) {
+            const StudioServices = async () => {
+                try {
+                    const fetched = await getStudioServices()
+                    setStudioServices(fetched.data);
+
+                } catch (error) {
+                    console.log(error)
+
+                }
+            }
+            StudioServices()
+        }
+
+    }, [studioServices])
 
     useEffect(() => {
         const getAppointmentsInfo = async () => {
@@ -71,6 +91,13 @@ export const Appointments = () => {
                             })
                             ) : ("null")
                     }
+                    <CDropdown
+                        buttonClass={"a"}
+                        dropdownClass={"b"}
+                        title={"patata"}
+                        items={studioServices}
+                        onChangeFunction= { () => {}}
+                    />
                 </div>
             </div>
         </>

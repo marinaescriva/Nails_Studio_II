@@ -1,4 +1,5 @@
 import { CDropdown } from '../../common/CDropDown/CDropDown'
+import {CButton} from '../../common/CButton/CButton'
 import { getStudioServices } from '../../services/apiCalls'
 import './Home.css'
 import '../../common/CDropDown/CDropDown.css'
@@ -10,6 +11,15 @@ export const Home = () => {
     const [loadedData, setLoadedData] = useState(false);
 
     const [studioServices, setStudioServices] = useState([])
+
+    // const newAppointment = async () => {
+    //     try {
+    //         const createNew = await CreateAppointment ()
+    //     } catch (error) {
+    //         console.log(error)
+            
+    //     }
+    // }
 
     useEffect(() => {
 
@@ -33,14 +43,18 @@ export const Home = () => {
     return (
         <>
             <div className='homeDesign'>soy home</div>
-            <CDropdown
-                buttonClass={"ButtonDrop"}
-                dropdownClass={"ServicesStyle"}
-                title={"Confirmar"}
-                items={studioServices}
-                onChangeFunction={() => { }}
+            <select className={"a"} onChange={()=>{}} name={"a"}>
+            <option value="" disabled selected> {"b"} </option>
+            {studioServices.map((item, index) => (
+                <option key={index} value={item.id} className={"c"}>{item.name}</option>
+            ))}
+        </select>
+            {/* <CButton
+            className={"ButtonDrop"}
+            title={"view1"}
+            functionEmit={newAppointment}
 
-            />
+            /> */}
         </>
     )
 }

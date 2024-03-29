@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Studio.css'
 import { getStudioServices } from '../../services/apiCalls';
+import { CDropdown } from '../../common/CDropDown/CDropDown';
 
 export const Studio = () => {
 
@@ -29,21 +30,34 @@ export const Studio = () => {
         //header?
         <div className='studioDesign'>
             <div className='studioServiceDesign'>
-            <div>
-                {
-                    studioServices.length > 0
-                        ? (studioServices.map(studioService => {
-                            return (
-                                <div className='studioService'>
-                                    <div>{studioService.id}</div>
-                                    <div>{studioService.name}</div>
-                                    <div>{studioService.description}</div>
-                                </div>
-                            )
-                        }))
-                        : ("")
-                }
-            </div>
+                <div>
+                    {
+                        studioServices.length > 0
+                            ? (studioServices.map(studioService => {
+                                return (
+                                    <div className='studioService'>
+                                        <div>{studioService.id}</div>
+                                        <div>{studioService.name}</div>
+                                        <div>{studioService.description}</div>
+                                    </div>
+                                )
+                            }))
+                            : ("")
+                    }
+                    {/* <CDropdown
+                        buttonClass={"a"}
+                        dropdownClass={"b"}
+                        title={"patata"}
+                        items={studioServices}
+                        onChangeFunction= { () => {}}
+                    /> */}
+                    {/* <select className={"a"} onChange={() => { }} name={"a"}>
+                        <option value="" disabled selected> {"b"} </option>
+                        {studioServices.map((item, index) => (
+                            <option key={index} value={item.id} className={"c"}>{item.name}</option>
+                        ))}
+                    </select> */}
+                </div>
             </div>
         </div>
     )

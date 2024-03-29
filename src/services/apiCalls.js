@@ -153,3 +153,14 @@ export const getAppointments = async (token) => {
   
   return options.json();
 }
+
+// export const createAppointment = async (token) => {
+
+//   const options = await fetch (`${root}appointments`, {
+//     method: "POST",
+//     headers: {
+//       Authorization: `Bearer ${token}`
+//     },
+
+//   })
+// }
