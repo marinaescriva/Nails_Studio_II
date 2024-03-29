@@ -3,9 +3,8 @@
     width: 100vw;
 
     background-color: lightpink;
-
+    flex-direction: row;
     display: flex;
-    flex-wrap: wrap;
 
     justify-content: center;
     align-items: center;
@@ -25,6 +24,12 @@
     height: 5vh;
     width: fit-content;
 
+}
+.appointmentForm {
+    flex-direction: row;
+}
+.appointmentForm2 {
+    flex-direction: column;
 }
 
 .inputDesign:disabled {

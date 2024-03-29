@@ -2,28 +2,30 @@
 
     border-radius: 0.9em;
     border: 0.2em solid rgb(255, 255, 255);
-    border-style:hidden;
+    border-style: hidden;
 
     text-align: center;
 
     margin: 1em;
     height: 5vh;
-    width:fit-content;
+    width: fit-content;
 
 }
-.custominputDesign :disabled{
+
+.custominputDesign :disabled {
     background-color: rgb(130, 50, 0)
-    }
-.custominputDesignError{
+}
+
+.custominputDesignError {
 
     border: 0.2 solid red;
-     
+
 }
+
 .custominputDesign2 {
 
-       
-    color:rgb(70, 53, 13);
+
+    color: rgb(70, 53, 13);
     background-color: rgb(255, 235, 146);
 
 }
-

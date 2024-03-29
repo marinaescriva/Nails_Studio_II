@@ -4,6 +4,7 @@ import { getAppointments, createAppointment } from '../../services/apiCalls';
 import { getStudioServices } from '../../services/apiCalls';
 import { CDropdown } from '../../common/CDropDown/CDropDown';
 import { CustomInput } from '../../common/Custominput/Custominput';
+import { CButton } from '../../common/CButton/CButton';
 
 const dataUser = JSON.parse(localStorage.getItem("passport"));
 
@@ -39,12 +40,8 @@ export const Appointments = () => {
     const newAppointment = async () => {
         try {
             const response = await createAppointment(tokenStorage, appointmentsData)
-            const data = response.data
-            setAppointmentsData({
-                appointment_date: data.appointment_date,
-                service_id: data.service_id
-              
-            })
+    
+            console.log(response)
         } catch (error) {
             console.log(error)
 
@@ -93,21 +90,9 @@ export const Appointments = () => {
     return (
         <>
             <div className='appointmentsDesign'>
-                <div>
-                    {
-                        loadedData && appointments.length > 0
-                            ? (appointments.map(appointment => {
-                                return (
-                                    <div key={appointment.id} className='appointStyle'>
-                                        <div>{appointment.service.id}</div>
-                                        <div>{appointment.service && appointment.service.name}</div>
-                                        <div>{appointment.appointmentDate}</div>
-                                        <div className='CButton' id={appointment.id} onClick={()=>{}}> OK</div> {/*deleteFunction*/}
-                                    </div>
-                                )
-                            })
-                            ) : ("null")
-                    }
+                <div className='appointmentForm'>
+                <div className='appointmentForm2'>
+                    <h4>Book an appointment</h4>
                     <CustomInput
                         className={"inputDesign"}
                         type="date"
@@ -115,16 +100,42 @@ export const Appointments = () => {
                         value={appointmentsData.appointment_date || ""}
                         placeholder="DD/MM/YYYY"
                         disabled={""}
-                        functionChange={(e)=>inputHandler(e)}
+                        functionChange={(e) => inputHandler(e)}
 
                     />
                     <CDropdown
-                        buttonClass={"a"}
-                        dropdownClass={"b"}
-                        title={"services"}
+                        buttonClass={""}
+                        dropdownClass={""}
+                        title={"service_id"}
                         items={studioServices}
-                        onChangeFunction={() => { }}
+                        onChangeFunction={(e) => {inputHandler(e)}}
                     />
+                    </div>
+                    <CButton
+                            className={"CButtonDesign"}
+                            title={"New appointment"}
+                            functionEmit={newAppointment}
+                        />
+                    <div className='appointmentForm2'>
+
+                        <h4>Your appointments</h4>
+                        {
+                            loadedData && appointments.length > 0
+                                ? (appointments.map(appointment => {
+                                    {/*devuelve los appointments del usuario*/ }
+                                    return (
+                                        <div key={appointment.id} className='appointStyle'>
+                                            <div>{appointment.service.id}</div>
+                                            <div>{appointment.service && appointment.service.name}</div>
+                                            <div>{appointment.appointmentDate}</div>
+                                            <div className='CButton' id={appointment.id} onClick={() => { }}> OK</div> {/*deleteFunction*/}
+                                        </div>
+                                    )
+                                })
+                                ) : ("null")
+                        }
+                    </div>
+
                 </div>
             </div>
         </>

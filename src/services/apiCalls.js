@@ -154,13 +154,29 @@ export const getAppointments = async (token) => {
   return options.json();
 }
 
-export const createAppointment = async (token) => {
+export const createAppointment = async (token, appointmentsData) => {
 
-  const options = await fetch (`${root}appointments`, {
+  const options = {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
     },
+    body: JSON.stringify(appointmentsData)
+};
 
-  })
+try {
+    const response = await fetch(`${root}appointments`, options);
+
+    const data = await response.json();
+
+    if (!data.success) {
+        throw new Error(data.message);
+    }
+
+    return data;
+} catch (error) {
+  console.log(error.message)
+    return error;
+}
 }
