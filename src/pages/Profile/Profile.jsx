@@ -50,6 +50,8 @@ export const Profile = () => {
       };
 
     useEffect(() => {
+
+     
         
         if(!tokenStorage){
             navigate("/")

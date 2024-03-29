@@ -3,12 +3,15 @@ import { useEffect, useState } from 'react';
 import { getAppointments } from '../../services/apiCalls';
 
 
+const dataUser = JSON.parse(localStorage.getItem("passport")); ///??????
+
+
 export const Appointments = () => {
 
 
     const dataUser = JSON.parse(localStorage.getItem("passport"));
     const [tokenStorage, setTokenStorage] = useState(dataUser?.token)
-    const [loadedData , setLoadedData] = useState (false);
+    const [loadedData, setLoadedData] = useState(false);
 
     const [appointments, setAppointments] = useState([])
     const [appointmentsData, setAppointmentsData] = useState({
@@ -33,40 +36,43 @@ export const Appointments = () => {
     useEffect(() => {
         const getAppointmentsInfo = async () => {
             try {
+
                 const fetched = await getAppointments(tokenStorage)
-                setAppointments(fetched.data.appointments);
+              
+                setAppointments(fetched.data);
                 setLoadedData(true)
 
+
             } catch (error) {
-                console.log(error)
+                console.log(error.message)
             }
         }
-        if(!loadedData){
-        getAppointmentsInfo()
-    }
+        if (!loadedData) {
+            getAppointmentsInfo()
+        }
 
-    }, [loadedData , tokenStorage])
+    }, [loadedData, tokenStorage])
 
 
-return (
-    <>
-        <div className='appointmentsDesign'>
-            <div>
-                {
-                    loadedData && appointments.length > 0 
-                    ? (appointments.map(appointment => {
-                         return (
-                                <div key={appointment.id} className='appointStyle'>
-                                <div>{appointment.service_id}</div>
-                                <div>{appointment.service && appointment.service.name}</div>
-                                <div>{appointment.appointment_date}</div>
-                            </div>
-                        )
-                    })
-                    ): ("null")
-                }
+    return (
+        <>
+            <div className='appointmentsDesign'>
+                <div>
+                    {
+                        loadedData && appointments.length > 0
+                            ? (appointments.map(appointment => {
+                                return (
+                                    <div key={appointment.id} className='appointStyle'>
+                                        <div>{appointment.service_id}</div>
+                                        <div>{appointment.service && appointment.service.name}</div>
+                                        <div>{appointment.appointment_date}</div>
+                                    </div>
+                                )
+                            })
+                            ) : ("null")
+                    }
+                </div>
             </div>
-        </div>
-    </>
-)
+        </>
+    )
 }

@@ -144,10 +144,10 @@ export const getStudioServices = async () => {
 export const getAppointments = async (token) => {
 
 
-  const options = await fetch( {
+  const options = await fetch(`${root}appointments`, {
     method: "GET",
     headers: {
-      "Authorization": `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     },
   });
   
