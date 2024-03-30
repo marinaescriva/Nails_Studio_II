@@ -19,7 +19,7 @@ export const Admin = () => {
                 try {
                     const fetched = await getUsers(tokenStorage)
 
-                    setLoadedData(true)
+                   
 
                     setUsers(fetched.data)
                     console.log(fetched.data)

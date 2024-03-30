@@ -54,7 +54,6 @@ export const Profile = () => {
     useEffect(() => {
 
      
-        
         if(!tokenStorage){
             navigate("/")
         /* redirect to home if you are not logged */
