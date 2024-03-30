@@ -35,7 +35,7 @@ export const Home = () => {
         <>
             <div className='homeDesign'>
                 <div><h2>Conócenos</h2>
-                    <div>
+                    <div className='homeCard'>
                         <h5>Nos encargamos de hacerte una manicura y perfecta con preciosos diseños, siempre cuidando la seguridad de cada clienta. </h5>
                         <h5> Disponemos de las mejores técnicas y creamos los diseños más modernos del mundo de las uñas.</h5>
 

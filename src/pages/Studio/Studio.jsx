@@ -38,9 +38,9 @@ export const Studio = () => {
                             ? (studioServices.map(studioService => {
                                 return (
                                     <div className='studioService'>
-                                        <div>{studioService.id}</div>
-                                        <div>{studioService.name}</div>
-                                        <div>{studioService.description}</div>
+                                        <div className='studio1'>{studioService.id}</div>
+                                        <div className='studio1'>{studioService.name}</div>
+                                        <div className='studio1'>{studioService.description}</div>
                                     </div>
                                 )
                             }))

@@ -3,7 +3,7 @@
     height: 84vh;
     width: 100vw;
 
-    background-color: rgb(255, 181, 116);
+    background-image: url('../../img/neonail1.jpg');
 
     display: flex;
     flex-direction: column;
@@ -13,13 +13,28 @@
 }
 
 .studioService {
-    color:rgb(126, 67, 24);
-    margin: 0.3em;
+    color:rgb(255, 255, 255);
+    margin: 0.8em;
+    background-color: rgba(102, 43, 0, 0.434);
+
+    height: 17vh;
+    width: 46vw;
+
+    border-radius: 2em;
 
     display: flex;
-    flex-direction: row;
-    justify-content:flex-start;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+}
+.studio1{
+    margin:auto;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
 }
 .studioServiceDesign{
     
