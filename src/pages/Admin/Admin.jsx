@@ -18,9 +18,6 @@ export const Admin = () => {
             const allUsers = async () => {
                 try {
                     const fetched = await getUsers(tokenStorage)
-
-                   
-
                     setUsers(fetched.data)
                     console.log(fetched.data)
 
@@ -31,28 +28,24 @@ export const Admin = () => {
             }
             allUsers()
         }
-        }, [Users])
+    }, [Users])
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if (!tokenStorage) {
-            navigate("/")
-            /* redirect to home if you are not logged */
-        }
-    }, [tokenStorage])
+    //     if (!tokenStorage) {
+    //         navigate("/")
+    //         /* redirect to home if you are not logged */
+    //     }
+    // }, [tokenStorage])
 
     return (
         <>
             <div className="adminDesign">
-                VISTA SUPERADMIN
-
-            </div>
-            <div>
                 {
                     Users.length > 0
                         ? (Users.map(User => {
                             return (
-                                <div className='studioService'>
+                                <div className='userDesign'>
                                     <div>{User.id}</div>
                                     <div>{User.name}</div>
                                     <div>{User.surnarme}</div>
