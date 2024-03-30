@@ -10,7 +10,20 @@
     justify-content: center;
     align-items: center;
 }
-.userDesig {
+.userDesign {
 
-    background-color: greenyellow;
+    width: max-content;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: rgb(255, 255, 255);
+    margin: 1em;
+
+    border-radius: 1em;
+    
+
+    color: rgb(103,59,35);
 }

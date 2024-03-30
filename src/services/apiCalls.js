@@ -235,3 +235,7 @@ export const getUsers = async (token) => { {/*SUPERADMIN */}
     return error
   }
 }
+
+export const deleteUser = async (token) => {
+  
+}
