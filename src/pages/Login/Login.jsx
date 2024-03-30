@@ -75,8 +75,7 @@ export const Login = () => {
           }
 
         const decodificated = decodeToken(fetched.token)
-
-        console.log(decodificated)
+        
 
         const passport = {
             token: fetched.token,

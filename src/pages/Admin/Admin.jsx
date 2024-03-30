@@ -13,18 +13,27 @@ export const Admin = () => {
     const [Users, setUsers] = useState([])
 
 
-    useEffect (()=> {
-        if ( Users.length === 0){
+    useEffect(() => {
+        if (Users.length === 0) {
             const allUsers = async () => {
                 try {
-                    const fetched  = await getUsers()
-                    setUsers(fetched.data); {/*ES con data?*/}
-                }catch (error){
+                    const fetched = await getUsers()
+                    setUsers(fetched.data); {/*ES con data?*/ }
+                } catch (error) {
                     console.log(error.message)
                 }
             }
             allUsers()
         }
-    })
+    }, [Users])
 
+    return (
+        <>
+        <div className="adminDesign">
+            VISTA SUPERADMIN
+
+        </div>
+        </>
+    )
 }
+

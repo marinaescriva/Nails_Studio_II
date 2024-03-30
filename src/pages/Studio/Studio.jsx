@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Studio.css'
 import { getStudioServices } from '../../services/apiCalls';
-import { CDropdown } from '../../common/CDropDown/CDropDown';
+
 
 export const Studio = () => {
 
@@ -15,6 +15,8 @@ export const Studio = () => {
                 try {
                     const fetched = await getStudioServices()
                     setStudioServices(fetched.data);
+                    console.log(getStudioServices)
+                    console.log(fetched)
 
                 } catch (error) {
                     console.log(error)
@@ -44,19 +46,7 @@ export const Studio = () => {
                             }))
                             : ("")
                     }
-                    {/* <CDropdown
-                        buttonClass={"a"}
-                        dropdownClass={"b"}
-                        title={"patata"}
-                        items={studioServices}
-                        onChangeFunction= { () => {}}
-                    /> */}
-                    {/* <select className={"a"} onChange={() => { }} name={"a"}>
-                        <option value="" disabled selected> {"b"} </option>
-                        {studioServices.map((item, index) => (
-                            <option key={index} value={item.id} className={"c"}>{item.name}</option>
-                        ))}
-                    </select> */}
+                    
                 </div>
             </div>
         </div>

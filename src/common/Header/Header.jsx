@@ -16,6 +16,10 @@ export const Header = () => {
 
     }
 
+    const admin = () => {
+        navigate("/admin")
+    }
+
     return (
         <div className='headerDesign'>
             <CustomLink
@@ -26,40 +30,49 @@ export const Header = () => {
                 title="Studio"
                 destination="/studio"
             />
-            {passport?.token
-                ? (
-                    <div className="menu">
 
-                        <CustomLink
-                            title={passport?.decodificated?.name}
-                            destination="/profile"
-                        />
-                        <CustomLink
-                            title="Appointments"
-                            destination="/appointments"
-                        />
+            {passport?.token ? (
 
-                        <div onClick={logOut}>
-                            <CustomLink
-                                title={"logOut"}
-                                destination="/"
-                            />
+                <div className="menu">
+                    <CustomLink
+                        title={passport?.decoded?.name}
+                        destination="/profile"
+                    />
+                    <CustomLink
+                        title="Appointments"
+                        destination="/appointments"
+                    />
+                    <div onClick={logOut}>
+                        <CustomLink
+                            title={"logOut"}
+                            destination="/"
+                        />
+                    </div>
+
+                    {passport?.token && passport?.decodificated?.role === "super_admin" ? (
+
+                        <div onClick={admin}>
+                            <CustomLink title={"SuperAdmin"} destination={"/admin"} />
                         </div>
 
-                    </div>
-                ) : (
-                    <div className="menu">
-                        <CustomLink
-                            title="Register"
-                            destination="/register"
-                        />
-                        <CustomLink
-                            title="Login"
-                            destination="/login"
-                        />
-                    </div>
-                )
-            }
+                    ) : (null)
+                    }
+
+
+                </div>
+            ) : (
+                <div className="menu">
+                    <CustomLink
+                        title="Register"
+                        destination="/register"
+                    />
+                    <CustomLink
+                        title="Login"
+                        destination="/login"
+                    />
+                </div>
+
+            )}
         </div>
-    )
-}
+    );
+};
