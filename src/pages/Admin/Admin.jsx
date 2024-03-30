@@ -11,19 +11,20 @@ export const Admin = () => {
     const [tokenStorage, setTokenStorage] = useState(dataUser?.token);
     const navigate = useNavigate()
 
+    const allUsers = async () => {
+        try {
+            const fetched = await getUsers(tokenStorage)
+            setUsers(fetched.data)
+
+        } catch (error) {
+            console.log(error)
+
+        }
+    }
 
     useEffect(() => {
         if (Users.length === 0) {
-            const allUsers = async () => {
-                try {
-                    const fetched = await getUsers(tokenStorage)
-                    setUsers(fetched.data)
-
-                } catch (error) {
-                    console.log(error)
-
-                }
-            }
+           
             allUsers()
         }
     }, [Users, tokenStorage])
@@ -36,14 +37,14 @@ export const Admin = () => {
         }
     }, [tokenStorage , navigate])
 
-    const deletingUsers = async (UserName) => {
+    const deletingUsers = async (UserId) => {
         try {
-            const fetched = await deleteUser(tokenStorage, UserName)
-            console.log(fetched)
-            if (fetched.success) {
-                setUsers(Users.filter(items => items.name !== UserName))
-
+            const fetched = await deleteUser(tokenStorage, UserId)
+            
+            if (!fetched.success) {
+                setUsers(Users.filter(items => items.id !== UserId))
             }
+            allUsers();
         } catch (error) {
             console.log(error.message)
 
@@ -65,7 +66,7 @@ return (
                                 <CButton
                                 className={'CButtonDesign'}
                                 title={`Delete ${User.name} `}
-                                functionEmit={() => deletingUsers(User.name)}
+                                functionEmit={() => deletingUsers(User.id)}
                                 />
                             </div>
                         )
