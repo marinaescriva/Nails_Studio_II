@@ -3,7 +3,7 @@
     height: 84vh;
     width: 100vw;
 
-    background-color: rgb(215, 133, 46);
+    background-image: url('../../img/neonail1.jpg');
 
     display: flex;
     flex-direction: column;

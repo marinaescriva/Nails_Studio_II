@@ -30,7 +30,6 @@ export const Header = () => {
                 title="Studio"
                 destination="/studio"
             />
-
             {passport?.token ? (
 
                 <div className="menu">
@@ -42,12 +41,6 @@ export const Header = () => {
                         title="Appointments"
                         destination="/appointments"
                     />
-                    <div onClick={logOut}>
-                        <CustomLink
-                            title={"logOut"}
-                            destination="/"
-                        />
-                    </div>
 
                     {passport?.token && passport?.decodificated?.role === "super_admin" ? (
 
@@ -57,6 +50,12 @@ export const Header = () => {
 
                     ) : (null)
                     }
+                    <div onClick={logOut}>
+                        <CustomLink
+                            title={"logOut"}
+                            destination="/"
+                        />
+                    </div>
 
 
                 </div>
