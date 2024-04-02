@@ -10,10 +10,11 @@
 3. [Stack](#stack)
 4. [Backend project](#connect-with-backend-project)
 5. [Data Base schema](#data-base-schema)
-6. [API](#about-the-api)
-1. [Run it](#how-to-run-it)
-2. [To improve](#to-improve)
-3. [Agreements](#agreements)
+6. [Views](#views)
+7. [API](#about-the-api)
+8. [Run it](#how-to-run-it)
+9. [To improve](#to-improve)
+10. [Agreements](#agreements)
 
 
 ### Description :bulb:
@@ -38,6 +39,24 @@ https://github.com/marinaescriva/nails_studio.git
 ### Data Base Schema :pushpin: 
 
 <img src="./src/img/mysql_DB.jpg">
+
+### Views
+
+#### Home
+<img src="./src/img/home.jpg">
+
+#### Services
+<img src="./src/img/services.jpg">
+
+#### Register
+<img src="./src/img/register.jpg">
+
+#### Login
+<img src="./src/img/login.jpg">
+
+#### Super admin view
+<img src="./src/img/admin.jpg>
+
 
 ### About the API 😃
 
